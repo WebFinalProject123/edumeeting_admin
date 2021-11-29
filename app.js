@@ -14,7 +14,8 @@ var association= require('./models/asocciate');
 association();
 var app = express();
 const hbs = require('hbs');
-
+var paginate = require('handlebars-paginate');
+ hbs.registerHelper('paginate', paginate);
 
 //this required before view engine setup
 hbs.registerPartials(__dirname + '/views/partials');

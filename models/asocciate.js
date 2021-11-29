@@ -1,4 +1,4 @@
-const Class = require('./classModels')
+const Class = require('./classModel')
 const Class_schedule = require('./class_scheduleModel')
 const Course = require('./courseModel')
 const sequelize = require('./index')
