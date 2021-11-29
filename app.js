@@ -6,9 +6,18 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var classRouter = require('./routes/class');
+var courseRouter = require('./routes/course');
+var profileRouter = require('./routes/profile');
+var studentRouter = require('./routes/student');
+var association= require('./models/asocciate');
+association();
 var app = express();
+const hbs = require('hbs');
 
+
+//this required before view engine setup
+hbs.registerPartials(__dirname + '/views/partials');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -19,8 +28,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+
+app.use('/classes', classRouter);
+app.use('/courses', courseRouter);
+app.use('/profile', profileRouter);
+app.use('/students', studentRouter);
 app.use('/users', usersRouter);
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
