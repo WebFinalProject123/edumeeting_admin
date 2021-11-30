@@ -7,9 +7,14 @@ exports.deleteOne=(id)=>{
     Class.destroy({where:{_course_ID:id}})
     Course.destroy({where:{_course_ID:id}})
 }
-exports.findOne=(id)=>{
-    return Course.findOne({where:{_course_ID:id}})
-}
-exports.insertOne=(course)=>{
-    return Course.bulkCreate([course])
+exports.findOne=(id)=>Course.findOne({where:{_course_ID:id}})
+exports.insertOne=(req)=>{
+    return Course.create({
+        _course_ID:null,
+        _name: req.body._courseName,
+        _description: req.body._description,
+        _price: req.body._price,
+        _star: req.body._star,
+        _brief_deccription: req.body._brief_deccription
+    })
 }

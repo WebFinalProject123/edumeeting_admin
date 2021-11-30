@@ -1,5 +1,4 @@
 const Class= require('../../models/classModel')
-const Class_schedule = require('../../models/class_scheduleModel')
 const Course = require('../../models/courseModel')
 const Registration = require('../../models/registrationModel')
 const Schedule = require('../../models/scheduleModel')
@@ -11,12 +10,27 @@ exports.list=()=> Class.findAll({raw: true
 
 exports.deleteOne=(id)=>{
     Registration.destroy({where: {_class_ID:id}})
-    Class_schedule.destroy({where: {_class_ID:id}})
     Class.destroy({where:{_class_ID:id}})
 }
 exports.findOne=(id)=>{
-    return Class.findOne({raw: true, where:{_class_ID:id}, include:[{model: Course},{model: Class_schedule, include:[{model: Schedule}]}, {model: Teacher, include:[{model: User}]}]})
+    return Class.findOne({raw: true, where:{_class_ID:id}, include:[{model: Course},{model: Schedule, as: 'Schedule1'},{model: Schedule, as: 'Schedule2'}, {model: Teacher, include:[{model: User}]}]})
 }
-exports.insertOne=(_class)=>{
-    return Class.bulkCreate([_class])
+exports.updateOne=(id)=>{
+    return Class.findOne({where:{_class_ID:id}})
 }
+exports.insertOne= (req)=>Class.create( {
+        _class_ID: null,
+        _course_ID: parseInt(req.body._course_ID),
+        _className: req.body._className,
+        _startDate: req.body._startDate,
+        _endDate: req.body._endDate,
+        _maxNumber: req.body._maxNumber,
+        _currentNumber: 0,
+        _room: req.body._room,
+        _numberOfLesson: req.body._numberOfLesson,
+        _teacher_ID: req.body._teacher_ID,
+        _schedule_ID_1: req.body._schedule_ID_1,
+        _schedule_ID_2: req.body._schedule_ID_2
+    })
+    
+    

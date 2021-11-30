@@ -10,7 +10,7 @@ router.get('/delete/:id', courseController.deleteOne);
 router.get('/', courseController.list);
 /* Insert*/
 router.get('/insert', (req,res,next)=>{
-    res.render('classes/update')
+    res.render('courses/insert')
 })
 router.post('/insert/p', courseController.insertOne)
 /* GET home page. */

@@ -29,13 +29,13 @@
                                         <div id="form-message-success" class="mb-4">
                                             Your message was sent, thank you!
                                         </div>
-                                        <form method="POST" action="/classes/update/p/{{_class._class_ID}}" class="contactForm">
+                                        <form method="POST" action="/classes/insert/p" class="contactForm">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="name">Class Name</label>
                                                         <input type="text" class="form-control" name="_className" id="name"
-                                                            placeholder="Name" value={{_class._className}}>
+                                                            placeholder="Name" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -45,8 +45,8 @@
                                                         <label class="label" for="course-select">Course:</label>
 
                                                         <select class="form-control" name="_course_ID" id="course-select">
-                                                            <option value={{_class.[Course._course_ID]}}>{{_class.[Course._name]}}</option>
-
+                                                           
+                                                            <option value="">--Select course--</option>
                                                             {{#each courses}}
                                                             <option value={{this._course_ID}}>{{this._name}}</option>
                                                             {{/each}}
@@ -60,7 +60,7 @@
                                                     <div class="form-group">
                                                         <label class="label" for="startDate">Start date</label>
                                                         <input type="date" class="form-control" name="_startDate" id="startDate"
-                                                            value={{_class._startDate}}>
+                                                            >
                                                     </div>
                                                 </div>
 
@@ -68,18 +68,17 @@
                                                     <div class="form-group">
                                                         <label class="label" for="endDate">End date</label>
                                                         <input type="date" class="form-control" name="_endDate" id="endDate"
-                                                            value={{_class._endDate}}>
+                                                            >
                                                     </div>
                                                 </div>
 
-                                               
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="schedule-select">Choose schedule:</label>
+                                                        <label class="label" for="schedule-select">Choose schedule 1:</label>
 
-                                                        <select class="form-control" name="_schedule_ID_1" id="schedule-select">
-                                                            <option value={{_class._schedule_ID_1}}>{{_class.[Schedule1._dayOfWeek]}}: {{_class.[Schedule1._startHour]}}-{{_class.[Schedule1._endHour]}}</option>
+                                                        <select class="form-control" name="_schedule_ID_1" id="schedule-select" >
+                                                            <option value="">--Select schedule 1--</option>
                                                             {{#each schedules}}
                                                             <option value={{this._schedule_ID}}>{{this._dayOfWeek}}: {{this._startHour}}-{{this._endHour}}</option>
                                                             {{/each}}
@@ -91,7 +90,7 @@
                                                         <label class="label" for="schedule-select"></label>
 
                                                         <select class="form-control" name="_schedule_ID_2" id="schedule-select" >
-                                                            <option value={{_class._schedule_ID_2}}>{{_class.[Schedule2._dayOfWeek]}}: {{_class.[Schedule2._startHour]}}-{{_class.[Schedule2._endHour]}}</option>
+                                                            <option value="">--Select schedule 2--</option>
                                                             {{#each schedules}}
                                                             <option value={{this._schedule_ID}}>{{this._dayOfWeek}}: {{this._startHour}}-{{this._endHour}}</option>
                                                             {{/each}}
@@ -99,14 +98,13 @@
                                                     </div>
                                                 </div>
 
-                                               
-
+                                                
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="maxNumber">Max Number</label>
                                                         <input type="number" class="form-control" name="_maxNumber"
-                                                            id="maxNumber" placeholder="Max Number" min="0" value={{_class._maxNumber}}>
+                                                            id="maxNumber" placeholder="Max Number" min="0" >
                                                     </div>
                                                 </div>
 
@@ -116,9 +114,8 @@
 
                                                         <label class="label" for="teacher-select">Teacher:</label>
 
-                                                        <select class="form-control" name="_teacher_ID" id="teacher-select">
-                                                           <option value={{_class._teacher_ID}}>{{_class.[Teacher.User._firstName]}} {{_class.[Teacher.User._lastName]}}</option>
-                    
+                                                        <select class="form-control" name="_teacher_ID" id="teacher-select" >
+                                                           <option value="">--Select teacher--</option>
                                                             {{#each teachers}}
                                                             <option value={{this._teacher_ID}}>{{this.[User._firstName]}} {{this.[User._lastName]}}</option>
                                                             {{/each}}
@@ -131,14 +128,14 @@
                                                         <label class="label" for="room">Room:</label>
 
                                                        <input type="text" class="form-control" name="_room"
-                                                            id="room" placeholder="Room" value={{_class._room}}>
+                                                            id="room" placeholder="Room" aria-placeholder="Enter room">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="lesson">Number of lessons</label>
                                                         <input type="text" class="form-control" name="_numberOfLesson"
-                                                            id="lesson" placeholder="Number of lesson" min="0" value={{_class._numberOfLesson}}>
+                                                            id="lesson" placeholder="Number of lesson" min="0" aria-placeholder="Number of lessons">
                                                     </div>
                                                 </div>
                     

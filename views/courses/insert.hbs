@@ -29,13 +29,13 @@
                                         <div id="form-message-success" class="mb-4">
                                             Your message was sent, thank you!
                                         </div>
-                                        <form method="POST" action="/courses/update/p/{{course._course_ID}}" class="contactForm">
+                                        <form method="POST" action="/courses/insert/p" class="contactForm">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="name">Course Name</label>
                                                         <input type="text" class="form-control" name="_courseName" id="name"
-                                                            placeholder="Name" value={{course._name}}>
+                                                            placeholder="Name">
                                                     </div>
                                                 </div>
                                                 
@@ -44,7 +44,7 @@
                                                     <div class="form-group">
                                                         <label class="label" for="maxNumber">Price</label>
                                                         <input type="number" class="form-control" name="_price"
-                                                            id="maxNumber" placeholder="Price" min="0" value={{course._price}}>
+                                                            id="maxNumber" placeholder="Price" min="0">
                                                     </div>
                                                 </div>
 
@@ -55,7 +55,7 @@
                                                         <label class="label" for="room">Star:</label>
 
                                                        <input type="number" class="form-control" name="_star"
-                                                            id="room" placeholder="Star" value={{course._star}}>
+                                                            id="room" placeholder="Star">
                                                     </div>
                                                 </div>
 
@@ -63,7 +63,7 @@
                                                     <div class="form-group">
                                                         <label class="label" for="#">Brief Description:</label>
                                                         <input type="text" name="_brief_description" class="form-control" id="message"
-                                                            placeholder="Description" value={{coure._brief_description}}>
+                                                            placeholder="Description">
                                                     </div>
                                                 </div>
                                                
@@ -71,7 +71,7 @@
                                                     <div class="form-group">
                                                         <label class="label" for="#">Description:</label>
                                                         <textarea name="_description" class="form-control" id="message"
-                                                            cols="30" rows="4" placeholder="Description" >{{course._description}}</textarea>
+                                                            cols="30" rows="4" placeholder="Description" ></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">

@@ -3,13 +3,13 @@ var router = express.Router();
 var classController= require('../components/classes/classController')
 
 /* Update*/
-router.get('/update/:id', classController.showUpdate)
 router.post('/update/p/:id', classController.updateOne)
+router.get('/update/:id', classController.showUpdate)
+
 /* Insert*/
-router.get('/insert', (req,res,next)=>{
-    res.render('classes/update')
-})
 router.post('/insert/p', classController.insertOne)
+router.get('/insert', classController.showInsert)
+
 /* GET home page. */
 
 router.get('/delete/:id', classController.deleteOne);
