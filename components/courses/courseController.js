@@ -20,6 +20,9 @@ exports.list=(req,res,next)=>{
         })
     })
 }
+exports.showUpdate=(req,res,next)=>{
+    courseService.findOne(req.params.id).then((course) => res.render('courses/update',{course}))
+}
 exports.insertOne=(req,res,next)=>{
     const course= Course.build({
         
@@ -32,7 +35,7 @@ exports.insertOne=(req,res,next)=>{
 }
 
 exports.updateOne=(req,res,next)=>{
-    courseService.updateOne(req.body._course_ID).then((course)=>{course.update({
+    courseService.findOne(req.body._course_ID).then((course)=>{course.update({
         _course_ID: req.body._course_ID,
         _name: req.body._courseName,
         _description: req.body._description,

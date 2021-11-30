@@ -53,7 +53,7 @@
                                 <tbody>
                                     {{#each courses}}
                                     <tr>
-                                        <td>{{this._course_ID}}</td>
+                                        <td>{{@index}}</td>
                                         <td>{{this._name}}</td>
                                         <td>{{this._price}}</td>
                                         <td><a href='/courses/delete/{{this._course_ID}}'

@@ -7,7 +7,7 @@ exports.deleteOne=(id)=>{
     Class.destroy({where:{_course_ID:id}})
     Course.destroy({where:{_course_ID:id}})
 }
-exports.updateOne=(id)=>{
+exports.findOne=(id)=>{
     return Course.findOne({where:{_course_ID:id}})
 }
 exports.insertOne=(course)=>{

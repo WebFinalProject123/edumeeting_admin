@@ -1,5 +1,8 @@
 const Class = require('../../models/classModel')
 const classService = require('../classes/classService')
+const courseService = require('../courses/courseService')
+const scheduleService = require('../schedules/scheduleService')
+const teacherService = require('../teachers/teacherService')
 
 exports.list=(req,res,next)=>{
     classService.list().then((classes)=>
@@ -19,6 +22,35 @@ exports.list=(req,res,next)=>{
         })
     })
 }
+
+exports.showUpdate=(req,res,next)=>{
+    const obj= new Object()
+    classService.findOne(req.params.id).then((_class)=>
+    {
+        return obj._class=_class
+        
+    })
+    .then(()=>teacherService.list())
+    .then((teachers)=>obj.teachers=teachers)
+    .then(()=>
+    {
+        return courseService.list()
+        
+    })
+    .then((courses)=>obj.courses=courses)
+    .then(()=>
+    {
+        return scheduleService.list()
+        
+    })
+    .then((schedules)=>obj.schedules=schedules)
+    .then(()=>{
+        console.log(obj)
+        res.render('classes/update',obj)
+    })
+    
+}
+
 exports.insertOne=(req,res,next)=>{
     const _class= Class.build({
         _course_ID: req.body._course_ID,
@@ -35,7 +67,7 @@ exports.insertOne=(req,res,next)=>{
 }
 
 exports.updateOne=(req,res,next)=>{
-    classService.updateOne(req.body._class_ID).then((__class)=>{__class.update({
+    classService.findOne(req.body._class_ID).then((__class)=>{__class.update({
         _class_ID: req.body._class_ID,
         _course_ID: req.body._course_ID,
         _className: req.body._className,
