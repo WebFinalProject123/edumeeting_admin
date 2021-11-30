@@ -43,5 +43,6 @@ exports.updateOne=(req,res,next)=>{
 }
 
 exports.deleteOne=(req,res,next)=>{
-    courseService.deleteOne(req.body._course_ID).then(()=>{res.redirect('/courses')})
+    courseService.deleteOne(req.params.id)
+    res.redirect('/courses')
 }

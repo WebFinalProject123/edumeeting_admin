@@ -51,5 +51,7 @@ exports.updateOne=(req,res,next)=>{
 }
 
 exports.deleteOne=(req,res,next)=>{
-    classService.deleteOne(req.body._class_ID).then(()=>{res.redirect('/classes')})
+    console.log(req.params.id)
+    classService.deleteOne(req.params.id)
+    res.redirect('/classes')
 }

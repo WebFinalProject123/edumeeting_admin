@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var classController= require('../components/classes/classController')
 
-
 // /* Delete*/
 // router.post('/delete', classController.deleteOne)
 // /* Update*/
@@ -13,5 +12,7 @@ var classController= require('../components/classes/classController')
 // })
 // router.post('/insert', classController.insertOne)
 /* GET home page. */
+
+router.get('/delete/:id', classController.deleteOne);
 router.get('/', classController.list);
 module.exports = router;
