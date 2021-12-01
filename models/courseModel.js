@@ -27,6 +27,9 @@ const Course = sequelize.define('Course', {
   },
   _brief_description:{
       type: DataTypes.STRING
+  },
+  _image:{
+    type: DataTypes.STRING
   }
 },{
     tableName: 'Course',

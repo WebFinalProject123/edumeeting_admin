@@ -11,12 +11,17 @@ var courseRouter = require('./routes/course');
 var profileRouter = require('./routes/profile');
 var studentRouter = require('./routes/student');
 var association= require('./models/asocciate');
+var fileUpload=require('express-fileupload');
+
+
 association();
 var app = express();
+app.use(fileUpload({useTempFiles: true}));
+
 const hbs = require('hbs');
 var paginate = require('handlebars-paginate');
  hbs.registerHelper('paginate', paginate);
-
+ 
 //this required before view engine setup
 hbs.registerPartials(__dirname + '/views/partials');
 // view engine setup

@@ -29,7 +29,7 @@
                                         <div id="form-message-success" class="mb-4">
                                             Your message was sent, thank you!
                                         </div>
-                                        <form method="POST" action="/courses/update/p/{{course._course_ID}}" class="contactForm">
+                                        <form method="POST" enctype="multipart/form-data" action="/courses/update/p/{{course._course_ID}}" class="contactForm">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -58,12 +58,19 @@
                                                             id="room" placeholder="Star" value={{course._star}}>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-md-6">
                                                     <div class="form-group">
+                                                        <label class="label" for="image">Upload Image</label>
+                                                       <input type="file" class="form-control" name="_image"
+                                                            id="image" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
                                                         <label class="label" for="#">Brief Description:</label>
-                                                        <input type="text" name="_brief_description" class="form-control" id="message"
-                                                            placeholder="Description" value={{coure._brief_description}}>
+                                                        <textarea type="text" name="_brief_description" class="form-control" id="message" cols="30" rows="2"
+                                                            placeholder="Brief Description">{{course._brief_description}}</textarea>
                                                     </div>
                                                 </div>
                                                

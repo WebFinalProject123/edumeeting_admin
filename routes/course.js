@@ -1,4 +1,7 @@
 var express = require('express');
+
+// var multer  = require('multer');
+// var upload = multer({ dest: './public/uploads/' })
 var router = express.Router();
 const courseController= require('../components/courses/courseController')
 

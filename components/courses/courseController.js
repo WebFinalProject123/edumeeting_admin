@@ -1,6 +1,6 @@
 const Course = require('../../models/courseModel')
 const courseService = require('../courses/courseService')
-
+const cloudinary= require('../../cloudinay/config')
 exports.list = (req, res, next) => {
     courseService.list().then((courses) => {
         console.log("courses")
@@ -28,12 +28,19 @@ exports.showUpdate = (req, res, next) => {
 }
 
 exports.insertOne = (req, res, next) => {
+    const image=req.files._image
+    console.log(image.tempFilePath)
+    cloudinary.uploader.upload(image.tempFilePath, (err, result)=>{courseService.insertOne(req, result.url).then(() => res.redirect('/courses'))})
     
-    courseService.insertOne(req).then(() => res.redirect('/courses'))
+    
+    
 }
 
 exports.updateOne = (req, res, next) => {
-    courseService.findOne(req.params.id).then((course) => course.update({
+    let image
+    if (req.files == undefined)
+       {
+        courseService.findOne(req.params.id).then((course) => course.update({
             _course_ID: req.params.id,
             _name: req.body._courseName,
             _description: req.body._description,
@@ -44,6 +51,29 @@ exports.updateOne = (req, res, next) => {
     )
     )
         .then(() => { res.redirect('/courses') })
+       }
+    else 
+    {
+        image=req.files._image
+    cloudinary.uploader.upload(image.tempFilePath, 
+        (err, result)=>{
+            courseService.findOne(req.params.id).then((course) => course.update({
+                _course_ID: req.params.id,
+                _name: req.body._courseName,
+                _description: req.body._description,
+                _price: req.body._price,
+                _star: req.body._star,
+                _brief_deccription: req.body._brief_deccription,
+                _image: result.url
+            }
+        )
+        )
+            .then(() => { res.redirect('/courses') })
+        })
+    }
+    
+    
+    
 }
 
 exports.deleteOne = (req, res, next) => {
