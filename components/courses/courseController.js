@@ -46,7 +46,7 @@ exports.updateOne = (req, res, next) => {
             _description: req.body._description,
             _price: req.body._price,
             _star: req.body._star,
-            _brief_deccription: req.body._brief_deccription
+            _brief_description: req.body._brief_description
         }
     )
     )
@@ -63,7 +63,7 @@ exports.updateOne = (req, res, next) => {
                 _description: req.body._description,
                 _price: req.body._price,
                 _star: req.body._star,
-                _brief_deccription: req.body._brief_deccription,
+                _brief_description: req.body._brief_description,
                 _image: result.url
             }
         )
