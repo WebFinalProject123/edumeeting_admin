@@ -20,7 +20,7 @@ exports.list = (req, res, next) => {
     })
 }
 exports.showUpdate = (req, res, next) => {
-    courseService.findOne(req.params.id).then((course) => {
+    courseService.findRawOne(req.params.id).then((course) => {
         console.log(course)
         res.render('courses/update', { course })
 
@@ -40,8 +40,7 @@ exports.updateOne = (req, res, next) => {
     let image
     if (req.files == undefined)
        {
-        courseService.findOne(req.params.id).then((course) => course.update({
-            _course_ID: req.params.id,
+        courseService.findOne(req.params.id).then((course) => course.update({_course_ID: req.params.id,
             _name: req.body._courseName,
             _description: req.body._description,
             _price: req.body._price,
