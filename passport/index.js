@@ -5,11 +5,11 @@ const AdminService= require("../components/auth/adminService")
 
 passport.use(new LocalStrategy(
   async function(username, password, done) {
-    const admin = await adminService.findByUserName(username)
+    const admin = await AdminService.findByUserName(username)
     console.log(admin)
     if (!admin)
         return done(null, false, {message: "Invalid username"})
-    if (!adminService.validatePassword(admin,password)){
+    if (!AdminService.validatePassword(admin,password)){
       return done(null, false, {message: "Incorrect password"})
     }
     return done(null, admin);
