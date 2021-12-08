@@ -4,7 +4,7 @@ const {DataTypes}= require('sequelize')
 const Admin = sequelize.define('Admin', {
     _amind_ID:{
         type: DataTypes.INTEGER,
-        allowNull: false, primaryKey: true
+        allowNull: false, primaryKey: true,autoIncrement: true
     },
     _user_ID:{
         type: DataTypes.INTEGER,

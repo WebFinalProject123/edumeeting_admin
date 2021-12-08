@@ -23,8 +23,8 @@ exports.register=async (infor)=>{
         _avatar: 'https://res.cloudinary.com/vodinhphuc-fit-hcmus/image/upload/v1638797362/149071_hpvlhk.png'
     })
     await Admin.create({
-        _Admin_ID: null,
-        _User_ID: user._ID
+        _amind_ID: null,
+        _user_ID: user._ID
     })
     return user;
 }

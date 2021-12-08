@@ -13,6 +13,7 @@ var courseRouter = require('./routes/course');
 var profileRouter = require('./routes/profile');
 var studentRouter = require('./routes/student');
 var authRouter= require('./routes/auth');
+
 var association= require('./models/asocciate');
 var fileUpload=require('express-fileupload');
 
