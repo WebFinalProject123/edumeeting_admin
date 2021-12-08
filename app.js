@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require("express-session")
+const passport= require("./passport")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -10,6 +12,7 @@ var classRouter = require('./routes/class');
 var courseRouter = require('./routes/course');
 var profileRouter = require('./routes/profile');
 var studentRouter = require('./routes/student');
+var authRouter= require('./routes/auth');
 var association= require('./models/asocciate');
 var fileUpload=require('express-fileupload');
 
@@ -35,12 +38,23 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+app.use(session({ secret: process.env.SECRET_SESSION }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use(function(req,res,next){
+  res.locals.admin=req.user;
+  next()
+})
+
+app.use('/', authRouter);
+app.use('/', indexRouter);
 app.use('/classes', classRouter);
 app.use('/courses', courseRouter);
 app.use('/profile', profileRouter);
 app.use('/students', studentRouter);
 app.use('/users', usersRouter);
-app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
