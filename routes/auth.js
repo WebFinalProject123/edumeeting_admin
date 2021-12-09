@@ -7,7 +7,7 @@ const loggedInGuard=require('../middlewares/loggedInGuard')
 router.get('/', authController.login);
 router.post('/login', passport.authenticate('local', 
 { successRedirect: '/index',
-failureRedirect: '/login?wrong',
+failureRedirect: '/?wrong',
 }));
 router.get('/logout', (req,res)=>{
     req.logout()
