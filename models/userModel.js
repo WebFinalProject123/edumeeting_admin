@@ -34,6 +34,9 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    _avatar:{
+        type: DataTypes.STRING
+    }
   },{
       tableName: 'User',
       timestamps: false

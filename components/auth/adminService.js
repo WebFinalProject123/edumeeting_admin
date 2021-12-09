@@ -20,7 +20,7 @@ exports.register=async (infor)=>{
         _email: infor.email,
         _phone: infor.phone,
         _address: infor.address,
-        _avatar: 'https://res.cloudinary.com/vodinhphuc-fit-hcmus/image/upload/v1638797362/149071_hpvlhk.png'
+        _avatar: 'https://res.cloudinary.com/vodinhphuc-fit-hcmus/image/upload/v1639024672/edumeeting/images/admin_pmsjv8.png'
     })
     await Admin.create({
         _amind_ID: null,

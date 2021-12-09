@@ -4,9 +4,9 @@ var authController=require('../components/auth/authController')
 var passport=require('../passport')
 
 /* GET home page. */
-router.get('/login', authController.login);
+router.get('/', authController.login);
 router.post('/login', passport.authenticate('local', 
-{ successRedirect: '/',
+{ successRedirect: '/index',
 failureRedirect: '/login?wrong',
 }));
 router.get('/logout', (req,res)=>{

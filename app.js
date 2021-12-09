@@ -13,6 +13,8 @@ var courseRouter = require('./routes/course');
 var profileRouter = require('./routes/profile');
 var studentRouter = require('./routes/student');
 var authRouter= require('./routes/auth');
+var adminRouter=require('./routes/admin')
+const loggedInGuard=require('./middlewares/loggedInGuard')
 
 var association= require('./models/asocciate');
 var fileUpload=require('express-fileupload');
@@ -50,12 +52,13 @@ app.use(function(req,res,next){
 })
 
 app.use('/', authRouter);
-app.use('/', indexRouter);
-app.use('/classes', classRouter);
-app.use('/courses', courseRouter);
-app.use('/profile', profileRouter);
-app.use('/students', studentRouter);
-app.use('/users', usersRouter);
+app.use('/index',loggedInGuard, indexRouter);
+app.use('/admins',loggedInGuard,adminRouter)
+app.use('/classes',loggedInGuard, classRouter);
+app.use('/courses',loggedInGuard, courseRouter);
+app.use('/profile',loggedInGuard, profileRouter);
+app.use('/students',loggedInGuard, studentRouter);
+app.use('/users',loggedInGuard, usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
