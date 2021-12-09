@@ -4,10 +4,10 @@ var authController=require('../components/auth/authController')
 var passport=require('../passport')
 const loggedInGuard=require('../middlewares/loggedInGuard')
 /* GET home page. */
-router.get('/', authController.login);
+router.get('/login', authController.login);
 router.post('/login', passport.authenticate('local', 
 { successRedirect: '/index',
-failureRedirect: '/?wrong',
+failureRedirect: '/login?wrong',
 }));
 router.get('/logout', (req,res)=>{
     req.logout()
