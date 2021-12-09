@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var authController=require('../components/auth/authController')
 var passport=require('../passport')
-
+const loggedInGuard=require('../middlewares/loggedInGuard')
 /* GET home page. */
 router.get('/', authController.login);
 router.post('/login', passport.authenticate('local', 
@@ -14,7 +14,7 @@ router.get('/logout', (req,res)=>{
     res.redirect('/')
 })
 /* GET home page. */
-router.get('/register', function(req, res, next) {
+router.get('/register',loggedInGuard, function(req, res, next) {
     res.render('authentication/register', { title: 'Express' });
   });
 router.post('/register', authController.register)
