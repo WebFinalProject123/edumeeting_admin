@@ -8,6 +8,6 @@ const passport=require('../../passport')
 
 exports.register=(req,res, next)=>{
     const user=adminService.register(req.body)
-    res.redirect('/')
+    res.redirect('/index')
 }
 
