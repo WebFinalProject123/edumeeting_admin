@@ -60,15 +60,15 @@
                 <!-- ============================================================== -->
                 <!-- User profile and search -->
                 <!-- ============================================================== -->
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="display: flex;">
                     {{#if admin}}
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="/profile" id="navbarDropdown"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <img src={{admin.avatar}} alt="user" class="profile-pic me-2">
                         {{admin.firstName}} {{admin.lastName}}
                     </a>
-                    <i class="fas fa-sign-out-alt"></i>
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="/logout" id="navbarDropdown">Logout</a>
+                    
+                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="/logout" id="navbarDropdown"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     {{/if}}
                     
                 </li>

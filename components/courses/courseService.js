@@ -7,6 +7,7 @@ exports.deleteOne=(id)=>{
     Class.destroy({where:{_course_ID:id}})
     Course.destroy({where:{_course_ID:id}})
 }
+exports.findRawOne=(id)=>Course.findOne({raw:true,where:{_course_ID:id}})
 exports.findOne=(id)=>Course.findOne({where:{_course_ID:id}})
 exports.insertOne=(req, _image)=>{
     return Course.create({
