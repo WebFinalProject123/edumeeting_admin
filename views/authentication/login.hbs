@@ -26,6 +26,11 @@
 								</div>
 			      	</div>
 							<form action="/login" class="signin-form" method="post">
+              <div class="form-group mt-3">
+			      			{{#if wrong}}
+			      			<label style="color: red;">Username or Password is wrong</label>
+                  {{/if}}
+			      		</div>
 			      		<div class="form-group mt-3">
 			      			<input type="text" class="form-control" name="username" required>
 			      			<label class="form-control-placeholder" for="username">Username</label>
