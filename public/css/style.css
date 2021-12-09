@@ -14636,6 +14636,79 @@ File: scss
   font-size: 12px;
   color: #a1aab2; }
 
+  #toast{
+    position:fixed;
+    top:100px;
+    right:30px;
+  }
+.msg_delete{
+  max-width:375px;
+  position:relative;
+  background-color: #eef5f9;
+  box-shadow: 10px 5px 5px rgba(0,0,0, 0.15);
+  border-left:2px solid #84DFFF;
+  margin: 10px 0;
+  border-radius:10px;
+  z-index: 100;
+
+  animation: slideLeft ease 0.3s ,slient linear 3s 1s forwards;
+
+  
+}
+
+@keyframes slideLeft{
+  from{
+    transform: translateX(calc(100% + 60px));
+    opacity:0;
+  }
+  to {
+    transform: translateX(0);
+    opacity:1;
+  }
+}
+
+@keyframes slient{
+ 
+  to {
+    
+    opacity:0;
+  }
+}
+
+.msg_delete__background{
+  box-sizing: border-box;
+  
+  display:flex;
+
+  align-items: center;
+  z-index:1;
+}
+.msg_delete__background::after{
+  content:"";
+  background-color: white;
+  background-position:bottom;
+  border-radius:0 10px;
+
+  position: absolute;
+  inset:70% 0 0;
+  z-index:-1;
+}
+
+.msg_delete .msg_delete__icon{
+  font-size:30px;
+  margin: 0 20px;
+  color:#84DFFF;
+}
+.msg_delete .msg_delete__title{
+  color:#84DFFF;
+}
+
+.msg_delete .msg_delete__msg{
+  z-index:3;
+  font-weight:400;
+  margin-right:10px;
+}
+
 /*
 Template Name: Admin Template
 Author: Niravjoshi / Wrappixel
