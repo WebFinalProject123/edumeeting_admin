@@ -13,8 +13,10 @@
     }
 
     .btn-container {
-        display: inline;
+        display: flex;
         margin: 10px auto;
+        justify-content: center;
+        align-items: center;
     }
 
     .btn-primary{
@@ -84,7 +86,7 @@
                                                     <p class="card-text">Current Number: {{this._currentNumber}}/{{this._maxNumber}}</p>
                                                 </div>
                                                 <div class="container btn-container">
-                                                    <button onclick="window.location.href='/classes/delete/{{this._class_ID}}';" class="btn btn-primary btn-customized">Delete</button>
+                                                    <button onclick="window.location.href='/classes/delete/{{this._class_ID}}'; showTimeline();" class="btn btn-primary btn-customized">Delete</button>
                                                     <button onclick="window.location.href='/classes/update/{{this._class_ID}}';" class="btn btn-primary btn-customized">Edit</button>
                                                 </div>
                                                 
@@ -155,3 +157,4 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script> --}}
+
