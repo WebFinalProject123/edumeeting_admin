@@ -1,4 +1,4 @@
-const studentService=require('./studentService')
+const studentService = require('./studentService')
 exports.list=async (req,res)=>{
     let students =await studentService.list();
     const page = parseInt(req.query.p) || 1
@@ -19,17 +19,13 @@ exports.list=async (req,res)=>{
 
 
 
-exports.updateOne = (req, res, next) => {
+exports.showUpdate = (req, res, next) => {
+    studentService.findRawOne(req.params.id).then((student) => {
+        console.log(student)
+        res.render('students/studentDetail', { student })
 
-    adminService.findOne(req.params.id).then((admin) => admin.update({_amind_ID: req.params.id,
-        _name: req.body._courseName,
-        _description: req.body._description,
-        _price: req.body._price,
-        _star: req.body._star,
-        _brief_description: req.body._brief_description
-    }))
+    })
 }
-
 
 
 

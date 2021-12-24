@@ -19,6 +19,8 @@
   <link href="/assets/plugins/chartist/dist/chartist.min.css" rel="stylesheet">
   <!-- Custom CSS -->
   <link href="/css/style.min.css" rel="stylesheet">
+  <!-- icon-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -26,6 +28,76 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
+
+<style>
+
+.search{
+  display:flex;
+  justify-content:space-between
+
+
+}
+  .search .seach__box{
+    background-color: #dadada;
+
+  }
+
+  .search input{
+      
+      
+    }
+  .search i{
+      
+      
+  }
+
+  .search .active .search__expanded{
+    padding: 10px 8px;
+    opacity: 1;
+    pointer-events:auto;
+
+  }
+
+  .search__expanded{
+    overflow-y:  auto;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    background-color: #dada;
+    
+    
+  }
+
+  .search__expanded li{
+    list-style: none;
+    padding  7px 12px;
+    cursor: pointer;
+    display:none;
+  }
+
+  .search .active .search__expanded li{
+    display: block;
+  }
+
+  .search__expanded li:hover{
+    background: #dada;
+  }
+
+
+
+.class-item .hidden{display: none;}
+
+
+    
+    @keyframes animate{0% { transform: scale(0.5); }100% {transform: scale(1); }}.class-item .showing{ animation: animate 0.8s ease; background:red; display: none;}
+
+
+
+
+
+
+
+</style>
 
 <body>
   <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -59,6 +131,63 @@
   <script src="/assets/plugins/flot/jquery.flot.js"></script>
   <script src="/assets/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
   <script src="/js/pages/dashboards/dashboard1.js"></script>
+
+
+
+  <script>
+      const search = document.querySelector(".search__box");
+      const input = search.querySelector("input");
+      const expand = search.querySelector(".search__expanded");
+
+      input.onkeyup = (e) => {
+        let userData = e.target.value;
+        let emptyArray = [];
+        let suggestion =  ["hello","world","sth","to","do","hi","hey hey hey hey hey hey hey hey hey heyhey hey hey hey hey hey"];
+        if (userData){
+          emptyArray = suggestion.filter((value) => value.startsWith(userData.toLocaleLowerCase()));
+
+        
+          emptyArray = emptyArray.map((data)=>{
+            return data = '<li>'+data+'</li>';
+
+          });
+          console.log(emptyArray);
+          search.classList.add("active");
+          showExpand(emptyArray);
+          let allList = search.querySelectorAll("li");
+          for (let i = 0; i < allList.length; i++){
+            allList[i].setAttribute("onclick","select(this)");
+          }
+        }
+        else{
+          search.classList.remove("active");
+        }
+        
+      }
+
+      function select(element){
+        let selectetUser = element.textContent;
+        input.value = selectetUser;
+        search.classList.remove("active");
+      }
+
+      function showExpand(list){
+        let listData;
+
+        if(!list.length){
+          userValue = input.value;
+          listData = '<li>'+userValue+'</li>';
+        }
+        else{
+          listData = list.join('');
+        }
+        expand.innerHTML = listData;
+      }
+
+  </script>
+
+
+  
 </body>
 
 </html>

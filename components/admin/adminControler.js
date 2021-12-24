@@ -19,18 +19,6 @@ exports.list=async (req,res)=>{
 
 
 
-exports.updateOne = (req, res, next) => {
-
-    adminService.findOne(req.params.id).then((admin) => admin.update({_amind_ID: req.params.id,
-        _name: req.body._courseName,
-        _description: req.body._description,
-        _price: req.body._price,
-        _star: req.body._star,
-        _brief_description: req.body._brief_description
-    }))
-}
-
-
 
 
 

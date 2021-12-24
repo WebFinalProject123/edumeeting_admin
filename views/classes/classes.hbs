@@ -6,6 +6,18 @@
         background-color: #e5e8f0;
         border: 2px solid black;
         border-radius: 10px;
+        transition: all .3s ease;
+    }
+
+
+
+
+  
+
+    
+
+    .class-item:hover {
+        transform: scale(1.1);
     }
 
     .card-img-top {
@@ -24,15 +36,56 @@
         margin-bottom: 20px;
     }
 
-    .btn-primary{
+    .btn-primary {
         margin: 0 1rem;
     }
-    .btn-customized{
+
+    .btn-customized {
         min-width: 5rem;
     }
+
+
+.class-item .hidden{display: none;}
+
+.filterItems-active{
+     background-color: #01d28e;
+    color:#fff;
+}
+
     
-    
+.filterItems {
+    margin:20px;
+    display:flex;
+    flex-wrap: wrap;
+   
+  }
+ 
+  .filterItems .item{
+    margin:10px;
+    border-radius: 10px;
+    border: solid 2px #01d28e;
+    padding:7px;
+  }
+
+  @media (max-width: 811px){
+      .filterItems .item{
+          width: calc(100%);
+  }
+  }
+  
+
+  .filterItems .item:hover{
+    background-color: #01d28e;
+    color:#fff;
+    cursor: pointer;
+  }
+
 </style>
+
+
+
+
+
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -73,37 +126,62 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">Our Available Classes</h2>
+                        <div class="filterItems">
+                            <span class="item filterItems-active" name = "0">All</span>
+                            <span class="item" name = "1"> 10-20 lessons</span>
+                            <span class="item" name = "2">20-30 lessons</span>
+                            <span class="item" name = "3">30-40 lessons</span>
+                            <span class="item" name = "4"> >40 lessons</span>
+
+
+
+                        </div>
+
+
                         <div class="table-responsive" style="overflow: hidden;">
                             <table class="table user-table">
-                               
+
                                 <div class="row row-cols-1 row-cols-md-3 g-4 ">
-                                         {{#each classes}}
-                                        <div class="col" >
-                                            <div class="card h-100 class-item">
-                                                <img src={{this.[Course._image]}}
-                                                    class="card-img-top" alt="...">
+                                    {{#each classes}}
+                                    <div class="col  class__item" name = '{{this._numberOfLesson}}'>
+                                        <div>
+
+
+                                            <div class="card h-100 class-item" name = '{{this._numberOfLesson}}' >
+                                                <img src={{this.[Course._image]}} class="card-img-top" alt="...">
                                                 <div class="card-body">
                                                     <h5 class="card-title">{{this.[Course._name]}}</h5>
                                                     <p class="card-text">Class: {{this._className}}</p>
-                                                    <p class="card-text">Period: {{this._startDate}} - {{this._endDate}}</p>
-                                                    <p class="card-text">Teacher: {{this.[Teacher.User._firstName]}} {{this.[Teacher.User._lastName]}}</p>
+                                                    <p class="card-text">Period: {{this._startDate}} - {{this._endDate}}
+                                                    </p>
+                                                    <p class="card-text">Teacher: {{this.[Teacher.User._firstName]}}
+                                                        {{this.[Teacher.User._lastName]}}</p>
                                                     <p class="card-text">Number of lesson: {{this._numberOfLesson}}</p>
-                                                    <p class="card-text">Current Number: {{this._currentNumber}}/{{this._maxNumber}}</p>
+                                                    <p class="card-text">Current Number:
+                                                        {{this._currentNumber}}/{{this._maxNumber}}</p>
                                                 </div>
                                                 <div class="container btn-container">
-                                                    <button onclick="window.location.href='/classes/delete/{{this._class_ID}}';" class="btn btn-primary btn-customized">Delete</button>
-                                                    <button onclick="window.location.href='/classes/update/{{this._class_ID}}';" class="btn btn-primary btn-customized">Edit</button>
+                                                    <button
+                                                        onclick="window.location.href='/classes/delete/{{this._class_ID}}';"
+                                                        class="btn btn-primary btn-customized">Delete</button>
+                                                    <button
+                                                        onclick="window.location.href='/classes/update/{{this._class_ID}}';"
+                                                        class="btn btn-primary btn-customized">Edit</button>
                                                 </div>
-                                                
+
 
                                             </div>
-                                            
-                                        
-                                        
+
+
+                                        </div>
+
+
+
+
                                     </div>
-                                     {{/each}}
+                                    {{/each}}
                             </table>
-                             
+
                         </div>
                     </div>
                 </div>
@@ -162,3 +240,49 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script> --}}
+
+
+<script>
+
+    const Item = document.querySelector(".filterItems");
+
+    const Img = document.querySelectorAll(".class__item");
+
+    window.onload = () => { //loading 
+        Item.onclick = (selectedItem) =>{
+
+            if(selectedItem.target.classList.contains("item")){
+
+                Item.querySelector(".filterItems-active").classList.remove("filterItems-active");
+                selectedItem.target.classList.add("filterItems-active");
+
+                let namefilter = selectedItem.target.getAttribute("name");
+                console.log(namefilter);
+
+                Img.forEach((i) => {
+                    let nameItem = i.getAttribute("name");
+                    console.log(nameItem);
+
+                    if(( Number(namefilter) *10 < Number(nameItem) ) || namefilter == "0"){
+                        console.log("true");
+                        i.classList.remove("hidden");
+                        i.classList.add("showing");
+                    }
+                    else{
+                        console.log("false");
+                        i.classList.add("hidden");
+                        i.classList.remove("showing");
+                        
+                    }
+
+                });
+
+            }
+
+        }
+    } 
+    
+
+
+
+</script>

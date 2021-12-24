@@ -1,13 +1,20 @@
-const Admin= require('../../models/adminModel')
-const User=require('../../models/userModel')
+const Student = require('../../models/studentModel')
+const User = require('../../models/userModel')
 exports.list= ()=>{
-    return Admin.findAll({raw: true, include:[{model: User}]})
+    return Student.findAll({raw: true, include:[{model: User}]})
 }
 
 
 
 
-exports.findOne=(id)=>Admin.findOne({where:{_amind_ID:id}, include:[{model: User}]})
+exports.findOne=(id)=> Student.findOne({where:{ _student_ID :id}, include:[{model: User}]})
+
+exports.findRawOne=(id)=>Student.findOne({where:{ _student_ID :id}, include:[{model: User}]})
+
+
+
+
+
 
 
 
