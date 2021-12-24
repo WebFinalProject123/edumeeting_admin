@@ -128,9 +128,9 @@
                         <h2 class="card-title">Our Available Classes</h2>
                         <div class="filterItems">
                             <span class="item filterItems-active" name = "0">All</span>
-                            <span class="item" name = "1"> 10-20 lessons</span>
-                            <span class="item" name = "2">20-30 lessons</span>
-                            <span class="item" name = "3">30-40 lessons</span>
+                            <span class="item" name = "1"> 10-19 lessons</span>
+                            <span class="item" name = "2">20-29 lessons</span>
+                            <span class="item" name = "3">30-39 lessons</span>
                             <span class="item" name = "4"> >40 lessons</span>
 
 
@@ -263,7 +263,19 @@
                     let nameItem = i.getAttribute("name");
                     console.log(nameItem);
 
-                    if(( Number(namefilter) *10 < Number(nameItem) ) || namefilter == "0"){
+                    if(namefilter == "4"){
+                        if( 40 <= Number(nameItem) ){
+                            i.classList.remove("hidden");
+                            i.classList.add("showing");
+                        }
+                        else{
+                            i.classList.add("hidden");
+                            i.classList.remove("showing");
+                        } 
+                    }
+                    else{
+                        if(( Number(namefilter) *10 <= Number(nameItem) && Number(nameItem) < Number(namefilter) *10 + 10) 
+                    || namefilter == "0"){
                         console.log("true");
                         i.classList.remove("hidden");
                         i.classList.add("showing");
@@ -274,6 +286,10 @@
                         i.classList.remove("showing");
                         
                     }
+
+                    }
+
+                    
 
                 });
 
