@@ -52,8 +52,8 @@ app.use(function(req,res,next){
 })
 
 app.use('/', authRouter);
-app.use('/',indexRouter);
-app.use('/admins',loggedInGuard,adminRouter)
+app.use('/', indexRouter);
+app.use('/admins',loggedInGuard,adminRouter);
 app.use('/classes',loggedInGuard, classRouter);
 app.use('/courses',loggedInGuard, courseRouter);
 app.use('/profile',loggedInGuard, profileRouter);

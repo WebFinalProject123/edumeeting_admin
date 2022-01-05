@@ -19,3 +19,5 @@ router.post('/insert/p', courseController.insertOne)
 /* GET home page. */
 
 module.exports = router;
+
+

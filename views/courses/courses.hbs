@@ -1,3 +1,109 @@
+<style>
+    .search {
+        display: flex;
+        justify-content: space-between
+    }
+
+    .search__box {
+        border: 1px solid gray;
+        border-radius: 10px;
+
+        align-items: center;
+
+    }
+
+    .search input {}
+
+    .search i {}
+
+    .search .active .search__expanded {
+        padding: 10px 8px;
+        opacity: 1;
+        pointer-events: auto;
+        min-width: 211px;
+
+    }
+
+    .search__expanded {
+        overflow-y: auto;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        background-color: #dada;
+
+
+    }
+
+    .search__expanded li {
+        list-style: none;
+        padding 11px 12px;
+        margin-bottom: 11px;
+        cursor: pointer;
+        display: none;
+        border-bottom: 1px solid white;
+        border-left: 1px solid white;
+    }
+
+    .search .active .search__expanded li {
+        display: block;
+    }
+
+    .search__expanded li:hover {
+        background: #dada;
+    }
+
+    .search__box i{
+        margin-right: 5px;
+        font-size: 21px;
+        position: relative;
+        top:5px;
+        cursor: pointer;
+    }
+    .search__box i:hover{
+        transform: scale(1.1);
+    }
+    .search__box input{
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        position: relative;
+        top:5px;
+        margin:5px
+    }
+
+
+
+    .class-item .hidden {
+        display: none;
+    }
+
+
+
+    @keyframes animate {
+        0% {
+            transform: scale(0.5);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .class-item .showing {
+        animation: animate 0.8s ease;
+        background: red;
+        display: none;
+    }
+</style>
+
+
+
+
+
+
+
+
+
 
 <div class="page-wrapper">
     <!-- ============================================================== -->
@@ -43,7 +149,7 @@
 
                             <div class="search__box">
                                 <input type="text">
-                                <i class="fas fa-search"></i>
+                                <i class="fas fa-search inputIcon"></i>
                                 <div class="search__expanded">
                                     <li>hello world</li>
                                     <li>hello world</li>
@@ -52,7 +158,7 @@
                                     <li>hello world</li>
 
                                 </div>
-                               
+
                             </div>
 
                         </header>
@@ -70,15 +176,17 @@
                                 </thead>
                                 <tbody>
                                     {{#each courses}}
-                                    <tr>
-                                        <td>{{@index}}</td>
-                                        <td>{{this._name}}</td>
-                                        <td>{{this._price}}</td>
-                                        <td><a href='/courses/delete/{{this._course_ID}}'
-                                                style="text-decoration: none;">Delete</a></td>
-                                        <td><a href='/courses/update/{{this._course_ID}}'
-                                                style="text-decoration: none;">Edit</a></td>
-                                    </tr>
+                                    
+                                        <tr class="courseItem" name = "{{this._name}}">
+                                            <td>{{@index}}</td>
+                                            <td>{{this._name}}</td>
+                                            <td>{{this._price}}</td>
+                                            <td><a href='/courses/delete/{{this._course_ID}}'
+                                                    style="text-decoration: none;">Delete</a></td>
+                                            <td><a href='/courses/update/{{this._course_ID}}'
+                                                    style="text-decoration: none;">Edit</a></td>
+                                        </tr>
+
                                     {{/each}}
                                 </tbody>
                             </table>
@@ -127,3 +235,100 @@
     <!-- End footer -->
     <!-- ============================================================== -->
 </div>
+
+
+<script>
+    const search = document.querySelector(".search__box");
+    const input = search.querySelector("input");
+    const expand = search.querySelector(".search__expanded");
+
+    const course = document.querySelectorAll(".courseItem");
+    const icon = document.querySelector(".inputIcon");
+
+
+    let suggestion = ["hello", "world", "sth", "to", "do", "hi", "hey hey hey hey hey hey hey hey hey heyhey hey hey hey hey hey"];
+
+    course.forEach((i) => {
+        let courseName = i.getAttribute("name").toLowerCase();
+        suggestion.push(courseName);
+    });
+
+
+    let validCourse = [];
+
+    icon.onclick = (selectedItem) =>{
+
+        let valuedata = input.value.toLocaleLowerCase();
+        console.log(valuedata);
+        if (valuedata.length){
+            console.log("start");
+            
+            course.forEach((j) => {
+                console.log("nest");
+                let courseName = j.getAttribute("name").toLowerCase();
+                console.log(courseName);
+                if(courseName.startsWith(valuedata)){
+                    j.classList.remove("hidden");
+                    j.classList.add("showing");
+                }
+                else{
+                    j.classList.add("hidden");
+                    j.classList.remove("showing");
+                }
+            });
+   
+        }
+    }
+
+   
+
+   
+
+    input.onkeyup = (e) => {
+        let userData = e.target.value;
+        let emptyArray = [];
+        
+
+        console.log(suggestion);
+        
+        if (userData) {
+            emptyArray = suggestion.filter((value) => value.startsWith(userData.toLocaleLowerCase()));
+
+
+            emptyArray = emptyArray.map((data) => {
+                return data = '<li>' + data + '</li>';
+
+            });
+            console.log(emptyArray);
+            search.classList.add("active");
+            showExpand(emptyArray);
+            let allList = search.querySelectorAll("li");
+            for (let i = 0; i < allList.length; i++) {
+                allList[i].setAttribute("onclick", "select(this)");
+            }
+        }
+        else {
+            search.classList.remove("active");
+        }
+
+    }
+
+    function select(element) {
+        let selectetUser = element.textContent;
+        input.value = selectetUser;
+        search.classList.remove("active");
+    }
+
+    function showExpand(list) {
+        let listData;
+
+        if (!list.length) {
+            userValue = input.value;
+            listData = '<li>' + userValue + '</li>';
+        }
+        else {
+            listData = list.join('');
+        }
+        expand.innerHTML = listData;
+    }
+</script>
