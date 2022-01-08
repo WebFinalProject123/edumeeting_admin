@@ -9,7 +9,7 @@ exports.list= ()=>{
 
 exports.findOne=(id)=> Student.findOne({where:{ _student_ID :id}, include:[{model: User}]})
 
-exports.findRawOne=(id)=>Student.findOne({where:{ _student_ID :id}, include:[{model: User}]})
+exports.findRawOne=(id)=>Student.findOne({raw:true , where:{ _student_ID :id}, include:[{model: User}]})
 
 
 

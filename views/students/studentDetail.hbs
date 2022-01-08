@@ -15,6 +15,57 @@
 
     </head>
 
+    <style>
+        .card__imagedetail{
+            width: 30%;
+            border-radius: 50px;
+            box-shadow: 7px 7px 2px 1px rgba(0, 0, 255, .2);
+
+        }
+
+        .checkBox{
+            --width:40px;
+            --height:calc(var(--width)/2)
+           
+
+        }
+
+        .checkBox__input{
+           display: none;
+        }
+
+        .checkBox__fill{
+            position:relative;
+            width: var(--width);
+            height: var(--height);
+            border-radius: 20px;
+            background: grey;
+            transition: background 0.2s;
+        }
+
+        .checkBox__input:checked ~ .checkBox__fill{
+            background: cyan;
+        }
+
+        .checkBox__fill::after{
+            content:"";
+            position:absolute;
+            top:0;
+            left:0;
+            width: var(--height);
+            height: var(--height);
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+            transition: transform 0.2s;
+        }
+
+         .checkBox__input:checked ~ .checkBox__fill::after{
+            transform: translateX(var(--height));
+        }
+
+    </style>
+
     <body>
         <section class="ftco-section">
             <div class="container">
@@ -31,20 +82,29 @@
                                         </div>
                                         <form method="POST" enctype="multipart/form-data" action="/courses/update/p/{{course._course_ID}}" class="contactForm">
                                             <div class="row">
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <img src={{student.[User._avatar]}} alt="Cover" class="card__imagedetail">
+                                                    </div>
+                                                </div>
+
+
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="name">Course Name</label>
+                                                        <label class="label" for="name">First Name</label>
                                                         <input type="text" class="form-control" name="_courseName" id="name"
-                                                            placeholder="Name" value="{{course._name}}">
+                                                            placeholder="Name" value={{student.[User._firstName]}}>
                                                     </div>
                                                 </div>
                                                 
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="maxNumber">Price</label>
-                                                        <input type="number" class="form-control" name="_price"
-                                                            id="maxNumber" placeholder="Price" min="0" value={{course._price}}>
+                                                        <label class="label" for="maxNumber">Last name</label>
+                                                        <input type="text" class="form-control" name="_price"
+                                                            id="maxNumber" placeholder="Price" min="0" value={{student.[User._lastName]}}>
                                                     </div>
                                                 </div>
 
@@ -52,42 +112,34 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="label" for="room">Star:</label>
+                                                        <label class="label" for="room">Phone</label>
 
                                                        <input type="number" class="form-control" name="_star"
-                                                            id="room" placeholder="Star" value={{course._star}}>
+                                                            id="room" placeholder="Star" value={{student.[User._phone]}}>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="label" for="image">Upload Image</label>
-                                                       <input type="file" class="form-control" name="_image"
-                                                            id="image" >
+                                                       <input type="text" class="form-control" name="_star"
+                                                            id="room" placeholder="Star" value={{student.[User._email]}}>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label class="label" for="#">Brief Description:</label>
-                                                        <textarea name="_brief_description" class="form-control" id="message" cols="30" rows="2"
-                                                            placeholder="Brief Description">{{course._brief_description}}</textarea>
+                                                        <label class="label" for="image">Upload Image</label>
+                                                       <input type="text" class="form-control" name="_star"
+                                                            id="room" placeholder="Star" value={{student.[User._address]}}>
                                                     </div>
                                                 </div>
                                                
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="label" for="#">Description:</label>
-                                                        <textarea name="_description" class="form-control" id="message"
-                                                            cols="30" rows="4" placeholder="Description" >{{course._description}}</textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="submit" value="Sends Message"
-                                                            class="btn btn-primary">
-                                                        <div class="submitting"></div>
-                                                    </div>
-                                                </div>
+                                                <label class = "checkBox"for="myToggle">
+                                                    <input type="checkbox" class="checkBox__input" id="myToggle"   onclick="myFunction()">
+                                                    <div class = "checkBox__fill"></div>
+                                                </label>
+                                                
+                                               
                                             </div>
                                         </form>
                                     </div>
@@ -110,3 +162,24 @@
 
 
 </div>
+
+
+
+<script>
+
+    $('#myToggle').on("click",function(event){
+
+        $post (`/user/ban.val()}`,{userID: $('#userID').val()}, function (data){},).fail(function (data){})
+
+    }); 
+
+
+
+</script>
+
+
+
+
+
+
+
