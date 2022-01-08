@@ -17,3 +17,8 @@ exports.register=(req,res, next)=>{
     res.redirect('/index')
 }
 
+exports.addTeacher= async (req, res, next)=>{
+    await adminService.addTeacher(req.body)
+    res.redirect('/teachers')
+}
+

@@ -15,6 +15,22 @@ exports.list=async (req,res)=>{
     }});
 }
 
+exports.changeAvatar= async (req, res)=>{
+    const avatar=await adminService.changeAvatar(req.files.avatar)
+    req.session.passport.user.avatar=avatar
+    req.locals.admin=req.user
+    res.render('/profile')
+}
+exports.ban= async (req, res)=>{
+    console.log(req.params.userID)
+    console.log(req.params.action)
+    const student =await adminService.ban(req.params.userID, req.params.action)
+    if (student)
+        res.redirect('/students')
+    else
+        res.redirect('/admins')
+}
+
 
 
 

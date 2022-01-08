@@ -1,139 +1,126 @@
- <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <div class="page-breadcrumb">
-                <div class="row align-items-center">
-                    <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="page-title mb-0 p-0">Profile</h3>
-                        <div class="d-flex align-items-center">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-4 align-self-center">
-                        <div class="text-end upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/monsteradmin/"
-                                class="btn btn-success d-none d-md-inline-block text-white" target="_blank">Upgrade to
-                                Pro</a>
-                        </div>
-                    </div>
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row align-items-center">
+            <div class="col-md-6 col-8 align-self-center">
+                <h3 class="page-title mb-0 p-0">Profile</h3>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
-                        <div class="card">
-                            <div class="card-body profile-card">
-                                <center class="mt-4"> <img src={{admin.avatar}}
-                                        class="rounded-circle" width="150" />
-                                    <h4 class="card-title mt-2">{{admin.firstName}} {{admin.lastName}}</h4>
-                                    <h6 class="card-subtitle">From: {{admin.address}}</h6>
-                                    <div class="form-group">
-                                        <div class="col-sm-12 d-flex">
-                                            <button class="btn btn-success mx-auto text-white">Edit
-                                                My Account</button>
-                                        </div>
-                                    </div>
 
-                                    
-                                </center>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="card">
-                            <div class="card-body">
-                                <form  method="POST" enctype="multipart/form-data" action="/profile/update"   class="form-horizontal form-material mx-2">
-                                    <div class="form-group">
-                                        <label class="col-md-12 mb-0">First Name</label>
-                                        <div class="col-md-12">
-                                            <input type="text" placeholder="Johnathan Doe" name="_firstName"
-                                                class="form-control ps-0 form-control-line" value="{{admin.firstName}}">
-                                        </div>
-
-
-                                        <label class="col-md-12 mb-0">Last Name</label>
-                                        <div class="col-md-12">
-                                            <input type="text" placeholder="Johnathan Doe" name="_lastName"
-                                                class="form-control ps-0 form-control-line" value=" {{admin.lastName}}">
-                                        </div>
-
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Email</label>
-                                        <div class="col-md-12">
-                                            <input type="email" placeholder="johnathan@admin.com"
-                                                class="form-control ps-0 form-control-line" name="example-email"
-                                                id="example-email" value="{{admin.email}}">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label class="col-md-12 mb-0">Phone No</label>
-                                        <div class="col-md-12">
-                                            <input type="text" placeholder="123 456 7890" name="_phone"
-                                                class="form-control ps-0 form-control-line" value="{{admin.phone}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12 mb-0">Address</label>
-                                        <div class="col-md-12">
-                                            <input type="text" placeholder="Binh Thanh District, HCMC" name="_address"
-                                            value='{{admin.address}}'
-                                                class="form-control ps-0 form-control-line" value="{{admin.phone}}">
-                                        </div>
-                                    </div>
-                                   
-                                    
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12 d-flex">
-                                            <button class="btn btn-success mx-auto text-white">Update
-                                                Profile</button>
-                                        </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-5">
+                <div class="card">
+                    <div class="card-body profile-card">
+                        <center class="mt-4"> <img src={{admin.avatar}} class="rounded-circle" width="150" />
+                            <h4 class="card-title mt-2">{{admin.firstName}} {{admin.lastName}}</h4>
+                            <h6 class="card-subtitle">From: {{admin.address}}</h6>
+                            <div class="form-group">
+                                <form enctype="multipart/form-data" name="myForm" method="post" action="/admin/changeAvatar">
+                                    <input type="file" id="chooseFile" name="avatar" hidden>
+                                    <div class="col-sm-12 d-flex">
+                                        <button type="button" class="btn btn-success mx-auto text-white " id="btn-changeAvatar">Change avatar</button>
                                     </div>
                                 </form>
+
                             </div>
+
+
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data" action="/profile/update"
+                            class="form-horizontal form-material mx-2">
+                            <div class="form-group">
+                                <label class="col-md-12 mb-0">First Name</label>
+                                <div class="col-md-12">
+                                    <input type="text" placeholder="Johnathan Doe" name="_firstName"
+                                        class="form-control ps-0 form-control-line" value="{{admin.firstName}}">
+                                </div>
+
+
+                                <label class="col-md-12 mb-0">Last Name</label>
+                                <div class="col-md-12">
+                                    <input type="text" placeholder="Johnathan Doe" name="_lastName"
+                                        class="form-control ps-0 form-control-line" value=" {{admin.lastName}}">
+                                </div>
+
+
+                            </div>
+                            <div class="form-group">
+                                <label for="example-email" class="col-md-12">Email</label>
+                                <div class="col-md-12">
+                                    <input type="email" placeholder="johnathan@admin.com"
+                                        class="form-control ps-0 form-control-line" name="example-email"
+                                        id="example-email" value="{{admin.email}}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-12 mb-0">Phone No</label>
+                                <div class="col-md-12">
+                                    <input type="text" placeholder="123 456 7890" name="_phone"
+                                        class="form-control ps-0 form-control-line" value="{{admin.phone}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12 mb-0">Address</label>
+                                <div class="col-md-12">
+                                    <input type="text" placeholder="Binh Thanh District, HCMC" name="_address"
+                                        value='{{admin.address}}' class="form-control ps-0 form-control-line"
+                                        value="{{admin.phone}}">
+                                </div>
+                            </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12 d-flex">
+                            <button class="btn btn-success mx-auto text-white">Update
+                                Profile</button>
                         </div>
                     </div>
-                    <!-- Column -->
+                    </form>
                 </div>
-                <!-- Row -->
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
-                <!-- ============================================================== -->
             </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-           
         </div>
+
+    </div>
+</div>
+
+<script>
+    document.getElementById("btn-changeAvatar").onclick = function(){
+        document.getElementById('chooseFile').click()
+
+        while(document.getElementById('chooseFile').value === ''){}
+        document.myForm.submit();
+    }
+</script>

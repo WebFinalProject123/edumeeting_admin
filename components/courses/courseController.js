@@ -22,7 +22,7 @@ exports.list = (req, res, next) => {
 exports.showUpdate = (req, res, next) => {
     courseService.findRawOne(req.params.id).then((course) => {
         console.log(course)
-        res.render('courses/update', { course })
+        res.render('courses/update', {course})
 
     })
 }
@@ -44,7 +44,7 @@ exports.updateOne = (req, res, next) => {
             _name: req.body._courseName,
             _description: req.body._description,
             _price: req.body._price,
-            _star: req.body._star,
+            _type: req.body._type,
             _brief_description: req.body._brief_description
         }
     )
@@ -61,7 +61,7 @@ exports.updateOne = (req, res, next) => {
                 _name: req.body._courseName,
                 _description: req.body._description,
                 _price: req.body._price,
-                _star: req.body._star,
+                _type: req.body._type,
                 _brief_description: req.body._brief_description,
                 _image: result.url
             }

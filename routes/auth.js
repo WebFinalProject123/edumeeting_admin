@@ -18,5 +18,10 @@ router.get('/logout', (req,res)=>{
 router.get('/register',loggedInGuard, function(req, res, next) {
     res.render('authentication/register', { title: 'Express' });
   });
+router.get('/addTeacher',loggedInGuard, function(req, res, next) {
+  res.render('authentication/addTeacher', { title: 'Express' });
+});
+
+router.post('/addTeacher', loggedInGuard, authController.addTeacher)
 router.post('/register', authController.register)
 module.exports = router;

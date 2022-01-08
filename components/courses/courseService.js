@@ -15,8 +15,9 @@ exports.insertOne=(req, _image)=>{
         _name: req.body._courseName,
         _description: req.body._description,
         _price: req.body._price,
-        _star: req.body._star,
-        _brief_deccription: req.body._brief_deccription,
-        _image: _image
+        _type: req.body._type,
+        _brief_description: req.body._brief_description,
+        _image: _image,
+        _views: 0
     })
 }

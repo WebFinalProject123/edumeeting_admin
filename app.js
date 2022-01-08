@@ -13,7 +13,8 @@ var courseRouter = require('./routes/course');
 var profileRouter = require('./routes/profile');
 var studentRouter = require('./routes/student');
 var authRouter= require('./routes/auth');
-var adminRouter=require('./routes/admin')
+var adminRouter=require('./routes/admin');
+var teacherRouter = require('./routes/teacher')
 const loggedInGuard=require('./middlewares/loggedInGuard')
 var flash = require('connect-flash');
 
@@ -61,6 +62,7 @@ app.use('/classes',loggedInGuard, classRouter);
 app.use('/courses',loggedInGuard, courseRouter);
 app.use('/profile',loggedInGuard, profileRouter);
 app.use('/students',loggedInGuard, studentRouter);
+app.use('/teachers',loggedInGuard, teacherRouter);
 app.use('/users',loggedInGuard, usersRouter);
 
 // catch 404 and forward to error handler

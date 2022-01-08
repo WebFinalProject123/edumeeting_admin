@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 <style id="sth_css">
     body {
         margin-top: 20px;
@@ -113,19 +107,19 @@
     <div class="page-breadcrumb">
         <div class="row align-items-center">
             <div class="col-md-6 col-8 align-self-center">
-                <h3 class="page-title mb-0 p-0">Admins</h3>
+                <h3 class="page-title mb-0 p-0">Teachers</h3>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Students</li>
+                            <li class="breadcrumb-item active" aria-current="page">Teachers</li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <div class="col-md-6 col-4 align-self-center">
                 <div class="text-end upgrade-btn">
-                    <a href="/register" class="btn btn-success d-none d-md-inline-block text-white">Add Admin</a>
+                    <a href="/addTeacher" class="btn btn-success d-none d-md-inline-block text-white">Add Teacher</a>
                 </div>
             </div>
         </div>
@@ -144,34 +138,21 @@
                         <div class="table-responsive" style="overflow: hidden;">
                             <table class="table user-table">
                                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
-                                    {{#each students}}
+                                    {{#each teachers}}
                                     <div class="col mb-3 ">
                                         <div class="card admin-item">
                                             <img src="/assets/images/coverImage.jpg" alt="Cover"
-                                                class="card-img-top" name = {{this._student_ID}}>
+                                                class="card-img-top" >
                                             <div class="card-body text-center">
                                                 <img src={{this.[User._avatar]}} style="width:100px;margin-top:-65px"
                                                     alt="User"
                                                     class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
                                                 <h5 class="card-title">{{this.[User._firstName]}}
                                                     {{this.[User._lastName]}}</h5>
-                                                    <p class="text-secondary mb-1">Username: {{this.[User._userName]}}</p>
-                                                <p class="text-secondary mb-1">Role: Student</p>
-                                                
-                                                <p class="text-secondary mb-1">Ban: {{this.[User._isBanned]}}</p>
+                                                <p class="text-secondary mb-1">Role: Teacher</p>
                                                 <p class="text-muted font-size-sm">{{this.[User._address]}}</p>
                                             </div>
-                                            <div class="card-footer">
-                                                <a href='/students/studentDetail/{{this._student_ID}}'>
-                                                     <button class="btn btn-light btn-sm bg-white has-icon btn-block"
-                                                    type="button"><i class="material-icons">Information</i></button>
-                                                </a>
-                                                <a href=/admins/toggle/{{this.[User._isBanned]}}/{{this.[User._ID]}}>
-                                                     <button class="btn btn-light btn-sm bg-white has-icon btn-block"
-                                                    type="button"><i class="material-icons">Ban/Unban </i></button>
-
-                                                </a>
-                                            </div>
+                                            
                                         </div>
                                        
                                     </div>
