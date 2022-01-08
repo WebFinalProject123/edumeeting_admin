@@ -1,6 +1,6 @@
 const adminService=require('./adminService')
 exports.list=async (req,res)=>{
-    let admins=await adminService.list();
+    let admins=await adminService.list(req.user.username);
     const page = parseInt(req.query.p) || 1
     const perpage = 9
     const start = (page - 1) * perpage

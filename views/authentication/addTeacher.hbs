@@ -34,6 +34,13 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Create teacher account</h2>
+                     <div class="row row-space">
+                        <div class="col-4">
+                            <div class="input-group">
+                                {{#if wrong}}<div style="color: red">This username is exitsted</div>{{/if}}
+                            </div>
+                        </div>
+                    </div>
                     <form method="POST">
                         <div class="row row-space">
                             <div class="col-2">

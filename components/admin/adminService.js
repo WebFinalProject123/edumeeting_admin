@@ -2,8 +2,10 @@ const Admin= require('../../models/adminModel')
 const User=require('../../models/userModel')
 const Student=require('../../models/studentModel')
 const cloudinary=require('../../cloudinay/config')
-exports.list= ()=>{
-    return Admin.findAll({raw: true, include:[{model: User}]})
+const Op = require('sequelize').Op;
+
+exports.list= (username)=>{
+    return Admin.findAll({raw: true, include:[{model: User, where:{_userName: { [Op.ne]: username}}}]})
 }
 
 

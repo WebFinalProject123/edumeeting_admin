@@ -1,19 +1,20 @@
+<!-- Icons font CSS-->
+<link href="/colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="/colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link
+    href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Icons font CSS-->
-    <link href="/colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="/colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<!-- Vendor CSS-->
+<link href="/colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<link href="/colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
-    <!-- Vendor CSS-->
-    <link href="/colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="/colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+<!-- Main CSS-->
+<link href="/colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
 
-    <!-- Main CSS-->
-    <link href="/colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
-
-    <div class="page-wrapper ">
-      <div class="page-breadcrumb">
+<div class="page-wrapper ">
+    <div class="page-breadcrumb">
         <div class="row align-items-center">
             <div class="col-md-6 col-8 align-self-center">
                 <h3 class="page-title mb-0 p-0">Creation form</h3>
@@ -27,134 +28,146 @@
                     </nav>
                 </div>
             </div>
-            
         </div>
     </div>
-       <div class="container-fluid">
-            <div class="card card-4">
-                <div class="card-body">
-                    <h2 class="title">Create admin account</h2>
-                    <form method="POST">
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">first name</label>
-                                    <input class="input--style-4" type="text" name="firstName" required>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">last name</label>
-                                    <input class="input--style-4" type="text" name="lastName" required>
-                                </div>
-                            </div>
+    <div class="container-fluid">
+        <div class="card card-4">
+            <div class="card-body">
+                <h2 class="title">Create admin account</h2>
+                <div class="row row-space">
+                    <div class="col-4">
+                        <div class="input-group">
+                            {{#if wrong}}<div style="color: red">This username is exitsted</div>{{/if}}
                         </div>
-                        
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Email</label>
-                                    <input class="input--style-4" type="email" name="email" required>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Phone Number</label>
-                                    <input class="input--style-4" type="text" name="phone" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Address</label>
-                                    <input class="input--style-4" type="text" name="address" required>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                 
-                                <div class="input-group">
-                                    <label class="label">User name</label>
-                                    <div id="usernameMessage" style="color:red"></div>
-                                    <input class="input--style-4" type="text" name="username" id="username" onkeyup='checkUsernameLength();' required>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    
-                                    <label class="label">Password</label>
-                                    <div id="message"></div>
-                                    <input class="input--style-4" type="password" name="password" id="password" onkeyup='checkPasswordLength();' required>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Retype password</label>
-                                    <input class="input--style-4" type="password" name="password" id="confirm_password" onkeyup='check();' required>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--green" id="submit" type="submit" disabled >Submit</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
+
+                <form method="POST">
+
+
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">first name</label>
+                                <input class="input--style-4" type="text" name="firstName" required>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">last name</label>
+                                <input class="input--style-4" type="text" name="lastName" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Email</label>
+                                <input class="input--style-4" type="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Phone Number</label>
+                                <input class="input--style-4" type="text" name="phone" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Address</label>
+                                <input class="input--style-4" type="text" name="address" required>
+                            </div>
+                        </div>
+                        <div class="col-2">
+
+                            <div class="input-group">
+                                <label class="label">User name</label>
+                                <div id="usernameMessage" style="color:red"></div>
+                                <input class="input--style-4" type="text" name="username" id="username"
+                                    onkeyup='checkUsernameLength();' required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-space">
+                        <div class="col-2">
+                            <div class="input-group">
+
+                                <label class="label">Password</label>
+                                <div id="message"></div>
+                                <input class="input--style-4" type="password" name="password" id="password"
+                                    onkeyup='checkPasswordLength();' required>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group">
+                                <label class="label">Retype password</label>
+                                <input class="input--style-4" type="password" name="password" id="confirm_password"
+                                    onkeyup='check();' required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-t-15">
+                        <button class="btn btn--radius-2 btn--green" id="submit" type="submit" disabled>Submit</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Jquery JS-->
-    <script src="/colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
-    <!-- Vendor JS-->
-    <script src="/colorlib-regform-4/vendor/select2/select2.min.js"></script>
-    <script src="/colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
-    <script src="/colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
 
-    <!-- Main JS-->
-    <script src="/colorlib-regform-4/js/global.js"></script>
-    <script>
-      var check = function() {
-          
-      if (document.getElementById('password').value ==
-        document.getElementById('confirm_password').value){
-        document.getElementById('message').innerHTML = '';
-        document.getElementById('submit').disabled = false;
-      } else {
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('message').innerHTML = 'Password is not matching';
-        document.getElementById('submit').disabled = true;
-      }
-      checkPasswordLength()
+
+
+<!-- Jquery JS-->
+<script src="/colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
+<!-- Vendor JS-->
+<script src="/colorlib-regform-4/vendor/select2/select2.min.js"></script>
+<script src="/colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
+<script src="/colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
+
+<!-- Main JS-->
+<script src="/colorlib-regform-4/js/global.js"></script>
+<script>
+    var check = function () {
+
+        if (document.getElementById('password').value ==
+            document.getElementById('confirm_password').value) {
+            document.getElementById('message').innerHTML = '';
+            document.getElementById('submit').disabled = false;
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Password is not matching';
+            document.getElementById('submit').disabled = true;
+        }
+        checkPasswordLength()
     }
 
-    function checkUsernameLength(){
-    if (document.getElementById('username').value.length < 8)
-    {
-        document.getElementById('usernameMessage').innerHTML="Username must be longer than 8 characters."
-        document.getElementById('submit').disabled = true;
+    function checkUsernameLength() {
+        if (document.getElementById('username').value.length < 8) {
+            document.getElementById('usernameMessage').innerHTML = "Username must be longer than 8 characters."
+            document.getElementById('submit').disabled = true;
+        }
+        else {
+            document.getElementById('usernameMessage').innerHTML = ""
+            document.getElementById('submit').disabled = false;
+        }
     }
-    else{
-        document.getElementById('usernameMessage').innerHTML=""
-        document.getElementById('submit').disabled = false;
-    }
-}
 
-function checkPasswordLength(){
-    if (document.getElementById('password').value.length < 10)
-    {
-        document.getElementById('message').innerHTML="Password must be longer than 10 characters."
-        document.getElementById('message').style.color = 'red';
-        document.getElementById('submit').disabled = true;
+    function checkPasswordLength() {
+        if (document.getElementById('password').value.length < 10) {
+            document.getElementById('message').innerHTML = "Password must be longer than 10 characters."
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('submit').disabled = true;
+        }
+        else {
+            document.getElementById('message').innerHTML = ""
+            document.getElementById('submit').disabled = false;
+        }
     }
-    else{
-        document.getElementById('message').innerHTML=""
-        document.getElementById('submit').disabled = false;
-    }
-}
-    </script>
-   
-
+</script>

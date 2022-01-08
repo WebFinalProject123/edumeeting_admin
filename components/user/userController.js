@@ -3,13 +3,15 @@ const userService = require('./userService')
 
 
 exports.updateByUserName=async (req,res)=>{ 
-    await userService.updateByUserName (req.user.username, req.query)   
+    await userService.updateByUserName (req.user.username, req.body)   
     
-    req.user.firstName = req.query.firstName
-    req.user.lastName = req.query.lastName
-    req.user.email = req.query.email
-    req.user.phone = req.query.phone
-    req.user.address = req.query.address
+    req.session.passport.user.firstName = req.body._firstName
+    req.session.passport.user.lastName = req.body._lastName
+    req.session.passport.user.email = req.body._email
+    req.session.passport.user.phone = req.body._phone
+    req.session.passport.user.address = req.body._address
+
+    res.locals.admin=req.user
 
     res.redirect('/profile')
 
