@@ -4,7 +4,14 @@ const Course = require('../../models/courseModel')
 
 const Registration = require('../../models/registrationModel')
 
-exports.sthlist=()=> Registration.findAll({raw: true})
+///////////////
+
+exports.sthlist=()=> Registration.findAll({raw: true, include: {model:Class, include: {model:Course} } } )
+
+   
+
+//////////////
+
 exports.list=()=> Course.findAll({raw: true})
 
 exports.deleteOne=(id)=>{
