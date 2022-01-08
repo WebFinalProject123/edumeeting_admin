@@ -261,13 +261,13 @@
                             <div class="card-body" >
                                 <h4 class="card-title">Daily Sales</h4>
                                 <div class="text-end">
-                                    <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> ${{this.count}}</h2>
+                                    <h2 class="font-light mb-0" id = {{this.date}}><i class="ti-arrow-up text-success"></i> ${{this.count}}</h2>
                                     <span class="text-muted">Todays Income</span>
                                 </div>
                                 <span class="text-success">{{this.date}}</span>
 
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: calc({{this.count}}/0.5)%; height: 6px;"
+                                    <div class="progress-bar bg-success" name = {{this.count}} role="progressbar" style=" height: 6px;"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
@@ -307,7 +307,7 @@
                                 <span class="text-success">{{this.date}}</span>
 
                                 <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: calc({{this.count}}/1.2)%; height: 6px;"
+                                    <div class="progress-bar bg-info" name = {{this.count}} role="progressbar" style="width: calc({{this.count}}/1.2)%; height: 6px;"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
@@ -336,7 +336,7 @@
                                 <span class="text-success">{{this.date}}</span>
 
                                 <div class="progress">
-                                    <div class="progress-bar bg-year" role="progressbar" style="width: calc({{this.count}}/5)%; height: 6px;"
+                                    <div class="progress-bar bg-year" name = {{this.count}} role="progressbar" style="width: calc({{this.count}}/5)%; height: 6px;"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
@@ -451,23 +451,20 @@
                             <table class="table stylish-table no-wrap">
                                 <thead>
                                     <tr>
-                                        <th class="border-top-0" colspan="2">Assigned</th>
+                                        <th class="border-top-0" >ID</th>
                                         <th class="border-top-0">Name</th>
-                                        <th class="border-top-0">Budget</th>
+                                        <th class="border-top-0">Attribute</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                   
                                         {{#each courses}}
-                                        <tr class="courseItem" name="{{this._name}}">
+                                        <tr class="courseItem" name="{{this.name}}">
                                             <td>{{@index}}</td>
-                                            <td>{{this._name}}</td>
-                                            <td class="coursePrice" name="{{this._price}}">{{this._price}}</td>
-                                            <td><a href='/courses/delete/{{this._course_ID}}'
-                                                    style="text-decoration: none;">Delete</a></td>
-                                            <td><a href='/courses/update/{{this._course_ID}}'
-                                                    style="text-decoration: none;">Edit</a></td>
+                                            <td>{{this.name}}</td>
+                                            <td class="coursePrice" name="{{this.count}}">{{this.count}}</td>
+                                            
                                         </tr>
                                     {{/each}}
 
@@ -478,11 +475,8 @@
                                         <tr class="classItem hidden" name="{{this._className}}">
                                             <td>{{@index}}</td>
                                             <td>{{this._className}}</td>
-                                            <td>{{this._maxNumber}}</td>
-                                            <td><a href='/courses/delete/{{this._class_ID}}'
-                                                    style="text-decoration: none;">Delete</a></td>
-                                            <td><a href='/courses/update/{{this._class_ID}}'
-                                                    style="text-decoration: none;">Edit</a></td>
+                                            <td>{{this._currentNumber}}</td>
+                                            
                                         </tr>
                                     {{/each}}
 
@@ -1175,6 +1169,51 @@
         
     }
 
+
+
+    addProcess= ()=>{
+            console.log("PROCESSA")
+      
+            let mainProcessDay = document.querySelectorAll('.progress-bar.bg-success');
+
+            mainProcessDay.forEach((y)=>{
+                console.log("INnA")
+                console.log(y)
+                let temp = y.getAttribute("name")
+                y.style.width=`${temp/0.5}%`;
+
+            });
+
+            console.log("PROCESSB")
+            let mainProcessMonth = document.querySelectorAll('.progress-bar.bg-info');
+
+            mainProcessMonth.forEach((y)=>{
+                console.log("INnB")
+                console.log(y)
+                let temp = y.getAttribute("name")
+                let width = temp/1.2;
+                console.log(width)
+                y.style.width=`${width}%`;
+
+            });
+
+            console.log("PROCESSC")
+            let mainProcessYear = document.querySelectorAll('.progress-bar.bg-year');
+
+            mainProcessYear.forEach((y)=>{
+                console.log("INnC")
+                console.log(y)
+                let temp = y.getAttribute("name")
+                y.style.width=`${temp/5}%`;
+
+            });
+
+
+            
+
+
+    }
+
    
 
 
@@ -1255,7 +1294,38 @@
     }); --}}
 
 
+
+
+
+
+
+
+
+
+
+
+    addProcess()
+
+
+
+
+
+
+
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
