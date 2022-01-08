@@ -179,6 +179,14 @@
         background-color: red!important;
     }
 
+    .bg-week {
+        background-color: pink!important;
+    }
+
+    .bg-quarter{
+        background-color: purple!important;
+    }
+
     .rowDay{
         display: inline-block;
     }
@@ -247,19 +255,19 @@
             <!-- Column -->
             <div class='rowDay'>
                 {{#each _date}}
-                <div class="eachRow col-sm-6" name = {{this.date}}>
+                <div class="eachRow " name = {{this.date}} id = {{this.count}}>
                     <div >
                         <div class="card">
                             <div class="card-body" >
                                 <h4 class="card-title">Daily Sales</h4>
                                 <div class="text-end">
-                                    <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
+                                    <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> ${{this.count}}</h2>
                                     <span class="text-muted">Todays Income</span>
                                 </div>
                                 <span class="text-success">{{this.date}}</span>
 
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%; height: 6px;"
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: calc({{this.count}}/0.5)%; height: 6px;"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
@@ -274,28 +282,11 @@
 
 
             <div class='rowWeek'>
-                {{#each _date}}
-                <div class="eachRow col-sm-6" name = {{this.date}}>
-                    <div class="signalWeek" name = {{this.count}}>
-                        <div class="card">
-                            <div class="card-body" >
-                                <h4 class="card-title">Daily Sales</h4>
-                                <div class="text-end">
-                                    <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
-                                    <span class="text-muted">Todays Income</span>
-                                </div>
-                                <span class="text-success">{{this.date}}</span>
+                
+            </div>
 
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%; height: 6px;"
-                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                {{/each}}
+            <div class='rowQuarter'>
+                
             </div> 
 
 
@@ -304,19 +295,19 @@
             <!-- Column -->
             <div class='rowMonth'>
                 {{#each _month}}
-                <div class="eachRow col-sm-6" name = {{this.date}}>
+                <div class="eachRow " name = {{this.date}} id = {{this.count}}>
                      <div >
                         <div class="card">
                             <div class="card-body" >
                                 <h4 class="card-title">Monthly Sales</h4>
                                 <div class="text-end">
-                                    <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
+                                    <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> ${{this.count}}</h2>
                                     <span class="text-muted">Todays Income</span>
                                 </div>
                                 <span class="text-success">{{this.date}}</span>
 
                                 <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%; height: 6px;"
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: calc({{this.count}}/1.2)%; height: 6px;"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
@@ -333,19 +324,19 @@
 
             <div class='rowYear'>
                 {{#each _year}}
-                <div class="eachRow col-sm-6" name = {{this.date}}>
+                <div class="eachRow " name = {{this.date}}>
                     <div>
                         <div class="card">
                             <div class="card-body" >
                                 <h4 class="card-title">Yearly Sales</h4>
                                 <div class="text-end">
-                                    <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
+                                    <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> ${{this.count}}</h2>
                                     <span class="text-muted">Todays Income</span>
                                 </div>
                                 <span class="text-success">{{this.date}}</span>
 
                                 <div class="progress">
-                                    <div class="progress-bar bg-year" role="progressbar" style="width: 80%; height: 6px;"
+                                    <div class="progress-bar bg-year" role="progressbar" style="width: calc({{this.count}}/5)%; height: 6px;"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
@@ -733,7 +724,8 @@
     let rowDate = document.querySelector('.rowDay');
     let rowMonth = document.querySelector('.rowMonth');
     let rowYear = document.querySelector('.rowYear');
-
+    let rowWeek = document.querySelector('.rowWeek');
+    let rowQuarter = document.querySelector('.rowQuarter');
 
 
 
@@ -773,13 +765,13 @@
                                                     <div class="card-body" name = STH>
                                                         <h4 class="card-title">Yearly Sales</h4>
                                                         <div class="text-end">
-                                                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
+                                                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $0</h2>
                                                             <span class="text-muted">Todays Income</span>
                                                         </div>
                                                         <span class="text-success">${'name',year}</span>
 
                                                         <div class="progress">
-                                                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%; height: 6px;"
+                                                            <div class="progress-bar bg-info" role="progressbar" style="width: 0%; height: 6px;"
                                                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                         </div>
                                                     </div>
@@ -793,7 +785,7 @@
                         tempBox.forEach((k)=>{
                             k.classList.remove("show");
                         });
-                        createDate.className =  "eachRow col-sm-6 show"
+                        createDate.className =  "eachRow show"
                         createDate.setAttribute('name',year)
                         rowYear.appendChild(createDate)
                     }
@@ -804,6 +796,7 @@
 
 
     createTemplateMonth = (year, month ) =>{
+        createTemplateQuarter(year, month);
       
                     let tempBox = document.querySelectorAll('.rowMonth .eachRow')
                   
@@ -839,13 +832,13 @@
                                                     <div class="card-body" name = STH>
                                                         <h4 class="card-title">Monthly Sales</h4>
                                                         <div class="text-end">
-                                                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
+                                                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $0</h2>
                                                             <span class="text-muted">Todays Income</span>
                                                         </div>
                                                         <span class="text-success">${'name',year+'-'+(1+month)}</span>
 
                                                         <div class="progress">
-                                                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%; height: 6px;"
+                                                            <div class="progress-bar bg-info" role="progressbar" style="width: 0%; height: 6px;"
                                                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                         </div>
                                                     </div>
@@ -855,7 +848,7 @@
                         tempBox.forEach((k)=>{
                             k.classList.remove("show");
                         });
-                        createDate.className =  "eachRow col-sm-6 show"
+                        createDate.className =  "eachRow  show"
                         createDate.setAttribute('name',year+'-'+(1+month))
                         rowMonth.appendChild(createDate)
                     }
@@ -869,6 +862,7 @@
 
 
     createTemplateDate = (day,year, month, first_data, i) =>{
+        createTemplateWeek(year, month, first_data, i);
         let tempDate = document.querySelectorAll('.calender__day-hover');
                     let tempBox = document.querySelectorAll('.rowDay .eachRow')
                     
@@ -910,13 +904,13 @@
                                                     <div class="card-body" name = STH>
                                                         <h4 class="card-title">Daily Sales</h4>
                                                         <div class="text-end">
-                                                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
+                                                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $ 0</h2>
                                                             <span class="text-muted">Todays Income</span>
                                                         </div>
                                                         <span class="text-success">${'name',year+'-'+(1+month)+'-'+(i - first_data+ 1)}</span>
 
                                                         <div class="progress">
-                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%; height: 6px;"
+                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 0%; height: 6px;"
                                                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                         </div>
                                                     </div>
@@ -927,7 +921,7 @@
                         tempBox.forEach((k)=>{
                             k.classList.remove("show");
                         });
-                        createDate.className =  "eachRow col-sm-6 show"
+                        createDate.className =  "eachRow  show"
                         createDate.setAttribute('name',year+'-'+(1+month)+'-'+(i - first_data+ 1))
                         rowDate.appendChild(createDate)
                     }
@@ -936,64 +930,81 @@
 
 
 
-    function getMonday(d) {
+    function getDayOfWeek(d) {
         d = new Date(d);
-        var day = d.getDay(),
-            diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
-        return new Date(d.setDate(diff));
+        let arr = [];
+        for(let i =1;i<=7;i++){
+            var day = d.getDay(),
+                diff = d.getDate() - day + (day == 0 ? (i-7):i); // adjust when day is sunday
+                arr.push( new Date(d.setDate(diff)));
         }
+
+        return arr;
+       
+    }
+
+ 
+
 
 
 
     
-    createTemplateWeek = (day,year, month, first_data, i) =>{
+    createTemplateWeek = (year, month, first_data, i) =>{
         
-                    let tempBox = document.querySelectorAll('.rowWeek .eachRow')
+
+        let tempBox = document.querySelector('.rowWeek');
+        tempBox.innerHTML = '';
+        let selectDate = i - first_data+ 1;
+        let day = new Date(year,month,selectDate);
+        console.log("DAY");
+        console.log(day.getDay()); // thứ
+        console.log(day.getDate()); //ngày
+        
+        const week = getDayOfWeek(day);
+        console.log(week);
 
 
-                    
-                   
-                    let _flag = false;
-                    if(tempBox!=null){
-                        
-                        console.log("Hi")
-                        console.log(tempBox)
-                        tempBox.forEach((x)=>{
+        let arrDay = document.querySelectorAll('.rowDay .eachRow');
+        let sum = 0;
+
+        if(arrDay!=null){
+            arrDay.forEach((x)=>{
+                console.log("EACH");
+                let dateAttribute =  x.getAttribute("name").split('-');
+                console.log(dateAttribute);
+                week.forEach((y)=>{
+                    console.log(y.getFullYear()+'-'+(1+y.getMonth())+'-'+y.getDate());
+                    if(Number(dateAttribute[0])=== y.getFullYear() && 
+                        Number(dateAttribute[1])===(1+y.getMonth()) && 
+                        Number(dateAttribute[2])=== y.getDate()){
+                            console.log("ADDING")
+                            sum += Number(x.getAttribute("id"));
+                        }
+                });
                             
 
-                            console.log(year+'-'+(1+month)+'-'+(i - first_data+ 1));
-                            console.log(x.getAttribute("name"));
+            });
 
-                            let dateAttribute =  x.getAttribute("name").split('-');
-                            if(Number(dateAttribute[0])===year && 
-                            Number(dateAttribute[1])===(1+month) && 
-                            Number(dateAttribute[2])=== (i - first_data+ 1)){
-                                _flag = true;
-                                console.log("SHOW")
-                                tempBox.forEach((k)=>{
-                                    k.classList.remove("show");
-                                });
-                                x.classList.add("show");
-                            }
-                            
-                        })
-                    }
-                    if(_flag === false){
-                        console.log("HELLO")
-                        let createDate = document.createElement('div');
+        }
+        console.log("SUM");
+        console.log(sum);
+
+
+
+        let createDate = document.createElement('div');
                         createDate.innerHTML = `
                                                   <div> 
                                                 <div class="card">
                                                     <div class="card-body" name = STH>
-                                                        <h4 class="card-title">Daily Sales</h4>
+                                                        <h4 class="card-title">Week Sales</h4>
                                                         <div class="text-end">
-                                                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
+                                                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $${sum}</h2>
                                                             <span class="text-muted">Todays Income</span>
                                                         </div>
-                                                        <span class="text-success">${'name',year+'-'+(1+month)+'-'+(i - first_data+ 1)}</span>
+                                                        <span class="text-success">${year+'-'+(month+1)+'-'+selectDate}</span>
 
                                                         <div class="progress">
-                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%; height: 6px;"
+                                                            <div class="progress-bar bg-week" role="progressbar" style="width: ${sum}%; height: 6px;"
                                                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                         </div>
                                                     </div>
@@ -1001,13 +1012,94 @@
                                                     </div> 
 
                                                 `
-                        tempBox.forEach((k)=>{
-                            k.classList.remove("show");
-                        });
-                        createDate.className =  "eachRow col-sm-6 show"
-                        createDate.setAttribute('name',year+'-'+(1+month)+'-'+(i - first_data+ 1))
-                        rowDate.appendChild(createDate)
-                    }
+
+        rowWeek.appendChild(createDate)
+    }
+
+
+
+
+    function getQuarter(x,month){
+        if(x === 0){
+            return [month-2,month-1,month]
+        }
+        else if(x===1){
+            return [month,month+1,month+2]
+        }
+        else{
+            return [month-1,month,month+1]
+        }
+    }
+
+
+    createTemplateQuarter = (year, month) =>{
+        
+
+        let tempBox = document.querySelector('.rowQuarter');
+        tempBox.innerHTML = '';
+        let selectMonth = month+ 1;
+        let x = selectMonth%3;
+        let y = Math.floor(selectMonth/3);;
+        console.log("QUATER");
+        console.log(selectMonth);
+        console.log(x); // du
+        console.log(y); //thuong
+
+        quarter = getQuarter(x,selectMonth)
+
+        
+    
+
+
+        let arrDay = document.querySelectorAll('.rowMonth .eachRow');
+        let sum = 0;
+
+        if(arrDay!=null){
+            arrDay.forEach((x)=>{
+                console.log("EACH");
+                let dateAttribute =  x.getAttribute("name").split('-');
+                console.log(dateAttribute);
+                quarter.forEach((y)=>{
+                    console.log(y);
+                    if(Number(dateAttribute[0])=== year && 
+                        Number(dateAttribute[1])=== y){
+                            console.log("ADDING")
+                            sum += Number(x.getAttribute("id"));
+                        }
+                });
+                            
+
+            });
+
+        }
+        console.log("SUM");
+        console.log(sum);
+
+
+
+        let createDate = document.createElement('div');
+                        createDate.innerHTML = `
+                                                  <div> 
+                                                <div class="card">
+                                                    <div class="card-body" name = STH>
+                                                        <h4 class="card-title">Quarter Sales</h4>
+                                                        <div class="text-end">
+                                                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $${sum}</h2>
+                                                            <span class="text-muted">Todays Income</span>
+                                                        </div>
+                                                        <span class="text-success">${year+'-'+selectMonth}</span>
+
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-quarter" role="progressbar" style="width: ${sum/1.5}%; height: 6px;"
+                                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    </div> 
+
+                                                `
+
+        rowQuarter.appendChild(createDate) 
     }
 
 
@@ -1031,7 +1123,7 @@
                 day.classList.add('calender__day-hover');
                 day.onclick = () =>{
                     createTemplateDate(day,year, month, first_data,i);
-
+                    
                     
                 }
                 day.innerHTML = i - first_data+ 1;
@@ -1043,6 +1135,7 @@
                 && year === curDate.getFullYear()&& month === curDate.getMonth()){
                     day.classList.add('curr-date');
                     createTemplateDate(day,year, month, first_data,i);
+                    
                 }
 
             }
@@ -1098,13 +1191,18 @@
         curYear.value-=1;
         createCalender(curMonth.value, curYear.value);
         createTemplateYear(curYear.value);
+        createTemplateMonth(curYear.value,curMonth.value)
+
+     
+
     }
 
     document.querySelector('#calender__next-year').onclick = ()=>{
         curYear.value+=1;
         createCalender(curMonth.value, curYear.value);
         createTemplateYear(curYear.value);
-
+        createTemplateMonth(curYear.value,curMonth.value)
+        
     }
 
 
@@ -1132,6 +1230,7 @@
     createCalender(curMonth.value, curYear.value)
     createTemplateMonth(curYear.value, curMonth.value);
     createTemplateYear(curYear.value);
+    
 
     {{!-- let tempBox = document.querySelectorAll('.rowDay .eachRow')
     tempBox.forEach((x)=>{
