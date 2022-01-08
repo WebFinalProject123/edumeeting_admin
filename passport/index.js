@@ -7,10 +7,14 @@ passport.use(new LocalStrategy(
   async function(username, password, done) {
     const admin = await AdminService.findByUserName(username)
     console.log(admin)
-    if (!admin)
-        return done(null, false, {message: "Invalid username"})
-    if (!AdminService.validatePassword(admin,password)){
-      return done(null, false, {message: "Incorrect password"})
+    if (admin==null)
+        return done(null, false, {type: 'error',message: "Invalid username"})
+    else {
+      const check= await AdminService.validatePassword(admin,password)
+      if(admin['User.isBanned'])
+        return done(null, false, {type: 'error',message: "Your account is banned"})
+      else if (!check)
+        return done(null, false, {type: 'error',message: "Incorrect password"})
     }
     return done(null, admin);
   }
