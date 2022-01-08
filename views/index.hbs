@@ -267,41 +267,36 @@
                     </div>
 
                 </div>
+                {{/each}}
+            </div> 
+            <!-- Column -->
 
 
 
-
-                <div class="dosth" name = {{this.date}}>
+            <div class='rowWeek'>
+                {{#each _date}}
+                <div class="eachRow col-sm-6" name = {{this.date}}>
+                    <div class="signalWeek" name = {{this.count}}>
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" >
                                 <h4 class="card-title">Daily Sales</h4>
                                 <div class="text-end">
                                     <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
                                     <span class="text-muted">Todays Income</span>
                                 </div>
                                 <span class="text-success">{{this.date}}</span>
+
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar"
-                                        style="width: 80%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
-                                        aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%; height: 6px;"
+                                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-
-
-
-
-
-                
+                </div>
                 {{/each}}
             </div> 
-
-
-
-
-             
 
 
 
@@ -939,6 +934,90 @@
     }
 
 
+
+
+    function getMonday(d) {
+        d = new Date(d);
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+        return new Date(d.setDate(diff));
+        }
+
+
+
+    
+    createTemplateWeek = (day,year, month, first_data, i) =>{
+        
+                    let tempBox = document.querySelectorAll('.rowWeek .eachRow')
+
+
+                    
+                   
+                    let _flag = false;
+                    if(tempBox!=null){
+                        
+                        console.log("Hi")
+                        console.log(tempBox)
+                        tempBox.forEach((x)=>{
+                            
+
+                            console.log(year+'-'+(1+month)+'-'+(i - first_data+ 1));
+                            console.log(x.getAttribute("name"));
+
+                            let dateAttribute =  x.getAttribute("name").split('-');
+                            if(Number(dateAttribute[0])===year && 
+                            Number(dateAttribute[1])===(1+month) && 
+                            Number(dateAttribute[2])=== (i - first_data+ 1)){
+                                _flag = true;
+                                console.log("SHOW")
+                                tempBox.forEach((k)=>{
+                                    k.classList.remove("show");
+                                });
+                                x.classList.add("show");
+                            }
+                            
+                        })
+                    }
+                    if(_flag === false){
+                        console.log("HELLO")
+                        let createDate = document.createElement('div');
+                        createDate.innerHTML = `
+                                                  <div> 
+                                                <div class="card">
+                                                    <div class="card-body" name = STH>
+                                                        <h4 class="card-title">Daily Sales</h4>
+                                                        <div class="text-end">
+                                                            <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
+                                                            <span class="text-muted">Todays Income</span>
+                                                        </div>
+                                                        <span class="text-success">${'name',year+'-'+(1+month)+'-'+(i - first_data+ 1)}</span>
+
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%; height: 6px;"
+                                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    </div> 
+
+                                                `
+                        tempBox.forEach((k)=>{
+                            k.classList.remove("show");
+                        });
+                        createDate.className =  "eachRow col-sm-6 show"
+                        createDate.setAttribute('name',year+'-'+(1+month)+'-'+(i - first_data+ 1))
+                        rowDate.appendChild(createDate)
+                    }
+    }
+
+
+
+
+
+
+
+
+
     generateDate=(calenderLastDay, first_data ,year, month, curDate, calendarDay)=>{
         
 
@@ -992,6 +1071,7 @@
         calendarHeaderYear.innerHTML = year
 
         let firstDate = new Date(year, month, 1)
+        console.log(year+'-'+month+'-'+1);
         console.log(firstDate.getDay());
         let first_data = firstDate.getDay();
         
