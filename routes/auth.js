@@ -8,6 +8,7 @@ router.get('/login', authController.login);
 router.post('/login', passport.authenticate('local', 
 { successRedirect: '/index',
 failureRedirect: '/login?wrong',
+failureFlash: true
 }));
 router.get('/logout', (req,res)=>{
     req.logout()

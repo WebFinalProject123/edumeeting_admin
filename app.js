@@ -15,6 +15,7 @@ var studentRouter = require('./routes/student');
 var authRouter= require('./routes/auth');
 var adminRouter=require('./routes/admin')
 const loggedInGuard=require('./middlewares/loggedInGuard')
+var flash = require('connect-flash');
 
 var association= require('./models/asocciate');
 var fileUpload=require('express-fileupload');
@@ -24,9 +25,11 @@ association();
 var app = express();
 app.use(fileUpload({useTempFiles: true}));
 
+
 const hbs = require('hbs');
 var paginate = require('handlebars-paginate');
  hbs.registerHelper('paginate', paginate);
+ app.use(flash());
  
 //this required before view engine setup
 hbs.registerPartials(__dirname + '/views/partials');
