@@ -13,7 +13,9 @@ router.get('/delete/:id', courseController.deleteOne);
 router.get('/', courseController.list);
 /* Insert*/
 router.get('/insert', (req,res,next)=>{
-    res.render('courses/insert')
+    if(req.query.wrong===undefined)
+        res.render('courses/insert')
+    else res.render('courses/insert',{wrong:true})
 })
 router.post('/insert/p', courseController.insertOne)
 /* GET home page. */

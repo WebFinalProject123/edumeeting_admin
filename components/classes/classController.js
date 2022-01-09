@@ -29,6 +29,10 @@ exports.showInsert = (req, res, next) => {
         .then(() => scheduleService.list())
         .then((schedules) => obj.schedules = schedules)
         .then(() => {
+
+            if (req.query.wrong!==undefined) {
+                obj.wrong=true
+            }
             res.render('classes/insert', obj)
         })
 }
@@ -52,32 +56,46 @@ exports.showUpdate = (req, res, next) => {
         })
         .then((schedules) => obj.schedules = schedules)
         .then(() => {
-            console.log(obj)
+            if (req.query.wrong!==undefined) {
+                obj.wrong=true
+            }
             res.render('classes/update', obj)
         })
 
 }
 
-exports.insertOne = (req, res, next) => {
+exports.insertOne = async (req, res, next) => {
+    const classCount = await classService.countClassByname(req.body._course_ID,req.body._className)
 
-
-    classService.insertOne(req).then(() => res.redirect('/classes'))
+    if (classCount == 0)
+        classService.insertOne(req).then(() => res.redirect('/classes'))
+    else {
+        res.redirect('/classes/insert?wrong')
+    }
 }
 
-exports.updateOne = (req, res, next) => {
-    classService.updateOne(req.params.id).then((__class) => __class.update({
-        _course_ID: req.body._course_ID,
-        _className: req.body._className,
-        _startDate: req.body._startDate,
-        _endDate: req.body._endDate,
-        _maxNumber: req.body._maxNumber,
-        _currentNumber: req.body._currentNumber,
-        _room: req.body._room,
-        _numberOfLesson: req.body._numberOfLesson,
-        _teacher_ID: req.body._teacher_ID,
-        _schedule_ID_1: req.body._schedule_ID_1,
-        _schedule_ID_2: req.body._schedule_ID_2
-    })).then(() => { res.redirect('/classes') })
+exports.updateOne = async (req, res, next) => {
+    const classCount = await classService.countClassBynameAndID(req.body._course_ID, req.body._className, req.params.id)
+
+    if (classCount == 0) {
+
+        classService.updateOne(req.params.id).then((__class) => __class.update({
+            _course_ID: req.body._course_ID,
+            _className: req.body._className,
+            _startDate: req.body._startDate,
+            _endDate: req.body._endDate,
+            _maxNumber: req.body._maxNumber,
+            _currentNumber: req.body._currentNumber,
+            _room: req.body._room,
+            _numberOfLesson: req.body._numberOfLesson,
+            _teacher_ID: req.body._teacher_ID,
+            _schedule_ID_1: req.body._schedule_ID_1,
+            _schedule_ID_2: req.body._schedule_ID_2
+        })).then(() => { res.redirect('/classes') })
+    }
+    else {
+        res.redirect(`/classes/update/${req.params.id}?wrong`)
+    }
 }
 
 

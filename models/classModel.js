@@ -15,7 +15,7 @@ const Class = sequelize.define('Class', {
     },
     _className:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
     _startDate:{
         type: DataTypes.DATE,

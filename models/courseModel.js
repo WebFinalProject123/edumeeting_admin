@@ -11,11 +11,12 @@ const Course = sequelize.define('Course', {
   },
   _name:{
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
   },
   _description: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
   },
   _price: {
       type: DataTypes.FLOAT,
