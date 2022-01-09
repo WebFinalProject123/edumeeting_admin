@@ -5,7 +5,7 @@ const Schedule = require('../../models/scheduleModel')
 const Teacher = require('../../models/teacherModel')
 const teacher= require('../../models/teacherModel')
 const User = require('../../models/userModel')
-exports.list=()=> Class.findAll({raw: true
+exports.list=()=> Class.findAll({raw: true, order: [["_startDate", "DESC"]]
     , include: [{model: Course, as: 'Course'},{ model: teacher, as: 'Teacher', include: {model: User, as: 'User', attributes: ['_firstName', '_lastName']}, attributes: ['_teacher_ID']}]})
 
 exports.deleteOne=(id)=>{
