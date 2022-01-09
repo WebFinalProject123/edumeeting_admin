@@ -8,14 +8,6 @@
         border-radius: 10px;
         transition: all .3s ease;
     }
-
-
-
-
-  
-
-    
-
     .class-item:hover {
         transform: scale(1.1);
     }
@@ -125,7 +117,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title">Our Available Classes</h2>
+                        <h2 class="card-title">Classes</h2>
                         <div class="filterItems">
                             <span class="item filterItems-active" name = "0">All</span>
                             <span class="item" name = "1"> 10-19 lessons</span>
@@ -154,19 +146,22 @@
                                                     <p class="card-text">Class: {{this._className}}</p>
                                                     <p class="card-text">Period: {{this._startDate}} - {{this._endDate}}
                                                     </p>
+                                                    <input type="text" value="{{this._startDate}}" class="startDate" hidden>
+                                                    <input type="text" value="{{this._endDate}}" class="endDate" hidden>
                                                     <p class="card-text">Teacher: {{this.[Teacher.User._firstName]}}
                                                         {{this.[Teacher.User._lastName]}}</p>
                                                     <p class="card-text">Number of lesson: {{this._numberOfLesson}}</p>
                                                     <p class="card-text">Current Number:
                                                         {{this._currentNumber}}/{{this._maxNumber}}</p>
+                                                    <p class="card-text status"></p>
                                                 </div>
                                                 <div class="container btn-container">
                                                     <button
                                                         onclick="window.location.href='/classes/delete/{{this._class_ID}}';"
-                                                        class="btn btn-primary btn-customized">Delete</button>
+                                                        class="btn btn-primary btn-customized btn-delete" >Delete</button>
                                                     <button
                                                         onclick="window.location.href='/classes/update/{{this._class_ID}}';"
-                                                        class="btn btn-primary btn-customized">Edit</button>
+                                                        class="btn btn-primary btn-customized btn-update"   >Edit</button>
                                                 </div>
 
 
@@ -296,6 +291,33 @@
             }
 
         }
+
+        const I=document.querySelectorAll('.class__item')
+        I.forEach((i)=>{
+            const startDate= new Date(i.querySelector('.startDate').value);
+            const endDate= new Date(i.querySelector('.endDate').value);
+            const currentDate=new Date()
+
+            console.log(currentDate)
+            console.log(startDate)
+            console.log(endDate)
+
+            if (currentDate < startDate)
+               {
+                   i.querySelector('.status').innerHTML="Status: Upcoming"
+               }
+            else if (currentDate >= startDate && currentDate <= endDate)
+            {
+                i.querySelector('.status').innerHTML="Status: Starting"
+                i.querySelector('.btn-delete').disabled=true
+            }
+            else if (currentDate > endDate)
+            {
+                i.querySelector('.status').innerHTML="Status: Completed"
+                i.querySelector('.btn-delete').disabled=true
+                i.querySelector('.btn-update').disabled=true
+            }
+        })
     } 
     
 
