@@ -11,7 +11,7 @@ router.post('/insert/p', classController.insertOne)
 router.get('/insert', classController.showInsert)
 
 /* GET home page. */
-
+router.get('/students/:id', classController.listStudents)
 router.get('/delete/:id', classController.deleteOne);
 router.get('/', classController.list);
 module.exports = router;

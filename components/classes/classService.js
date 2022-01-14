@@ -4,6 +4,7 @@ const Registration = require('../../models/registrationModel')
 const Schedule = require('../../models/scheduleModel')
 const Teacher = require('../../models/teacherModel')
 const teacher= require('../../models/teacherModel')
+const Student= require('../../models/studentModel')
 const User = require('../../models/userModel')
 const {Op}=require('sequelize')
 exports.list=()=> Class.findAll({raw: true, order: [["_startDate", "DESC"]]
@@ -36,5 +37,5 @@ exports.insertOne= (req)=>Class.create( {
 
 exports.countClassByname=(courseID, className)=>Class.count({where: {_course_ID: courseID,_className: className}})
 exports.countClassBynameAndID=(courseID,className, classID)=>Class.count({where: {_course_ID:courseID,_className: className, _class_ID: {[Op.ne]: classID}}})
-    
+exports.listStudents=(id)=> Class.findAll({raw: true,where:{_class_ID:id}, include: {model:Registration, include: {model: Student, include: {model: User}}}})
     

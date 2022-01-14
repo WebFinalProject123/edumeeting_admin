@@ -21,6 +21,11 @@ exports.list = (req, res, next) => {
         })
     })
 }
+exports.listStudents= async (req, res, next)=>{
+    const students = await classService.listStudents(req.params.id)
+    
+    res.render('classes/students',{students})
+}
 exports.showInsert = (req, res, next) => {
     const obj = new Object()
     teacherService.list().then((teachers) => obj.teachers = teachers)

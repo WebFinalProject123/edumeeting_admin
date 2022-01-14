@@ -1,0 +1,207 @@
+<style>
+    .search {
+        display: flex;
+        justify-content: space-between
+    }
+
+    .search__box {
+        border: 1px solid gray;
+        border-radius: 10px;
+
+        align-items: center;
+
+    }
+
+    .search input {}
+
+    .search i {}
+
+    .search .active .search__expanded {
+        padding: 10px 8px;
+        opacity: 1;
+        pointer-events: auto;
+        min-width: 211px;
+
+    }
+
+    .search__expanded {
+        overflow-y: auto;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        background-color: #dada;
+
+
+    }
+
+    .search__expanded li {
+        list-style: none;
+        padding 11px 12px;
+        margin-bottom: 11px;
+        cursor: pointer;
+        display: none;
+        border-bottom: 1px solid white;
+        border-left: 1px solid white;
+    }
+
+    .search .active .search__expanded li {
+        display: block;
+    }
+
+    .search__expanded li:hover {
+        background: #dada;
+    }
+
+    .search__box i{
+        margin-right: 5px;
+        font-size: 21px;
+        position: relative;
+        top:5px;
+        cursor: pointer;
+    }
+    .search__box i:hover{
+        transform: scale(1.1);
+    }
+    .search__box input{
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        position: relative;
+        top:5px;
+        margin:5px
+    }
+
+
+
+    .class-item .hidden {
+        display: none;
+    }
+
+
+
+    @keyframes animate {
+        0% {
+            transform: scale(0.5);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .class-item .showing {
+        animation: animate 0.8s ease;
+        background: red;
+        display: none;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row align-items-center">
+            <div class="col-md-6 col-8 align-self-center">
+                <h3 class="page-title mb-0 p-0">Registration</h3>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item " aria-current="page">Class</li>
+                            <li class="breadcrumb-item active" aria-current="page">Registration</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- column -->
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <header class="search">
+                            <h4 class="card-title">Student registrated</h4>
+
+                            
+
+                        </header>
+
+                        <div class="table-responsive">
+                            <table class="table user-table no-wrap">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0">Username</th>
+                                        <th class="border-top-0">Student Name</th>
+                                        <th class="border-top-0">Email</th>
+                                        <th class="border-top-0">Phone</th>
+                                        <th class="border-top-0">Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    {{#each students}}
+                                    
+                                        <tr class="courseItem" name = "{{this._name}}">
+                                            <td>{{this.[Registrations.Student.User._userName]}}</td>
+                                             <td>{{this.[Registrations.Student.User._firstName]}} {{this.[Registration.Student.User._lastName]}}</td>
+                                              <td>{{this.[Registrations.Student.User._email]}}</td>
+                                               <td>{{this.[Registrations.Student.User._phone]}}</td>
+                                                <td>{{this.[Registrations.Student.User._address]}}</td>
+                                        </tr>
+
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+        
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+
+
