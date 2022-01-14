@@ -175,6 +175,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{#if invalidDeletion}}
+                                    <div id="invalidDelation"></div>
+                                    {{/if}}
                                     {{#each courses}}
                                     
                                         <tr class="courseItem" name = "{{this._name}}">
@@ -330,5 +333,10 @@
             listData = list.join('');
         }
         expand.innerHTML = listData;
+    }
+
+    window.onload = function(){
+        if (document.getElementById('invalidDelation')!==null)
+            alert("Can't delete this course because there are some student registrated this course")
     }
 </script>

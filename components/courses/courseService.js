@@ -1,12 +1,15 @@
 
 const Class = require('../../models/classModel')
 const Course = require('../../models/courseModel')
+const Registration = require('../../models/registrationModel')
 const {Op}=require('sequelize')
 
 exports.list=()=> Course.findAll({raw: true})
 exports.deleteOne=(id)=>{
-    Class.destroy({where:{_course_ID:id}})
-    Course.destroy({where:{_course_ID:id}})
+    
+        Class.destroy({where:{_course_ID:id}})
+        Course.destroy({where:{_course_ID:id}})
+    
 }
 exports.findRawOne=(id)=>Course.findOne({raw:true,where:{_course_ID:id}})
 exports.findOne=(id)=>Course.findOne({where:{_course_ID:id}})
@@ -25,3 +28,5 @@ exports.insertOne=(req, _image)=>{
 
 exports.countCourseByName=(courseName)=> Course.count({where: {_name: courseName}})
 exports.countCourseByNameAndID=(courseName, courseID)=> Course.count({where: {_name: courseName, _course_ID: {[Op.ne]: courseID}}})
+
+exports.countRegistrations=(id)=> Registration.count({include: {model: Class, where: {_course_ID: id}}})

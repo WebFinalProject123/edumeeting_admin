@@ -10,13 +10,23 @@ exports.list = (req, res, next) => {
         const end = page * perpage
         const total = Math.ceil(courses.length / perpage)
         courses = courses.slice(start, end)
-        res.render('courses/courses', {
-            courses: courses,
-            pagination: {
-                page: page,       // The current page the user is on
-                pageCount: total // The total number of available pages
-            }
-        })
+        if(req.query.invalidDeletion==undefined)
+            res.render('courses/courses', {
+                courses: courses,
+                pagination: {
+                    page: page,       // The current page the user is on
+                    pageCount: total // The total number of available pages
+                }
+            })
+        else 
+            res.render('courses/courses', {
+                courses: courses,
+                invalidDeletion: true,
+                pagination: {
+                    page: page,       // The current page the user is on
+                    pageCount: total // The total number of available pages
+                }
+            })
     })
 }
 exports.showUpdate = (req, res, next) => {
@@ -79,14 +89,17 @@ exports.updateOne = async (req, res, next) => {
     else {
         res.redirect(`/courses/update/${req.params.id}?wrong`)
     }
-
-
-
 }
 
-exports.deleteOne = (req, res, next) => {
+exports.deleteOne = async (req, res, next) => {
+
+    const registrationCount= await courseService.countRegistrations(req.params.id)
+    if (registrationCount > 0)
+        res.redirect("/courses?invalidDeletion")
+    else {
     courseService.deleteOne(req.params.id)
     res.redirect('/courses')
+    }
 }
 
 
